@@ -88,35 +88,31 @@
     }
 
     .logo-circle {
-      width: 72px;
-      height: 72px;
-      border-radius: 18px;
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
       border: 1px solid var(--accent);
       background: radial-gradient(circle at 30% 20%, #ffffff, #24d1ff 35%, #020617 80%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 28px rgba(36, 209, 255, 0.85);
+      box-shadow: 0 0 26px rgba(36, 209, 255, 0.75);
       overflow: hidden;
     }
 
     .logo-circle img {
-      width: 92%;
-      height: 92%;
+      width: 94%;
+      height: 94%;
       object-fit: contain;
     }
 
     .logo-mark-inline {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
       border: 1px solid rgba(36, 209, 255, 0.7);
-      padding: 4px;
-      background: radial-gradient(
-        circle at top,
-        rgba(36, 209, 255, 0.16),
-        #020617
-      );
+      padding: 5px;
+      background: radial-gradient(circle at top, rgba(36, 209, 255, 0.16), #020617);
       box-shadow: 0 0 18px rgba(36, 209, 255, 0.45);
     }
 
@@ -135,7 +131,7 @@
     }
 
     .brand-name {
-      font-size: 14px;
+      font-size: 15px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       font-weight: 600;
@@ -151,12 +147,10 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 24px;
       font-size: 13px;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
     .nav-links a {
@@ -182,31 +176,6 @@
 
     .nav-links a:hover::after {
       width: 100%;
-    }
-
-    .lang-switch {
-      display: flex;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-soft);
-      padding: 2px;
-      background: rgba(10, 18, 34, 0.9);
-      font-size: 11px;
-    }
-
-    .lang-switch button {
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .lang-switch button.active {
-      background: var(--accent);
-      color: #020617;
     }
 
     .badge-soon {
@@ -250,12 +219,15 @@
       .nav {
         flex-wrap: wrap;
       }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        row-gap: 10px;
+      }
       .hero {
         grid-template-columns: minmax(0, 1fr);
         padding-top: 40px;
-      }
-      .nav-links {
-        justify-content: flex-end;
       }
     }
 
@@ -366,13 +338,13 @@
       font-size: 11px;
     }
 
-    /* HERO RIGHT PANEL + BANNER */
+    /* Hero right panel */
 
     .hero-panel {
       border-radius: 26px;
       border: 1px solid var(--border-soft);
-      background: rgba(4, 7, 15, 0.38);
-      background-image: url("nova-mainframe-banner.jpg"); /* pon aquí el nombre real del banner */
+      background: rgba(4, 7, 15, 0.35);
+      background-image: url("banner-mainframe.jpg");
       background-size: cover;
       background-position: center;
       box-shadow: var(--shadow-soft);
@@ -388,13 +360,17 @@
       inset: 0;
       background: radial-gradient(
         circle at top,
-        rgba(2, 6, 23, 0.2),
-        rgba(2, 6, 23, 0.82)
+        rgba(15, 23, 42, 0.8),
+        rgba(15, 23, 42, 0.7)
       );
-      mix-blend-mode: multiply;
+      backdrop-filter: blur(10px);
+      opacity: 0.72;
+      pointer-events: none;
     }
 
-    .hero-panel > * {
+    .panel-header,
+    .panel-grid,
+    .panel-footer {
       position: relative;
       z-index: 1;
     }
@@ -429,13 +405,30 @@
     .panel-grid {
       border-radius: 20px;
       border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(2, 6, 23, 0.75);
+      background: radial-gradient(
+        circle at top,
+        rgba(36, 209, 255, 0.16),
+        rgba(2, 6, 23, 0.06)
+      );
       padding: 18px 16px 16px;
       display: grid;
       grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
       gap: 16px;
       position: relative;
       overflow: hidden;
+    }
+
+    .panel-grid::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(
+        circle at 0% 0%,
+        rgba(36, 209, 255, 0.2),
+        transparent 58%
+      );
+      opacity: 0.55;
+      pointer-events: none;
     }
 
     .panel-main {
@@ -513,7 +506,7 @@
       backdrop-filter: blur(12px);
       background: radial-gradient(
         circle at top,
-        rgba(36, 209, 255, 0.22),
+        rgba(36, 209, 255, 0.24),
         rgba(15, 23, 42, 0.98)
       );
       box-shadow: 0 0 40px rgba(36, 209, 255, 0.4);
@@ -533,21 +526,23 @@
       letter-spacing: 0.12em;
       text-align: center;
       padding: 4px 2px;
-      color: #02111b;
+      color: #020617;
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(15, 23, 42, 0.8);
     }
 
     .orbit-dot {
       position: absolute;
-      width: 16px;
-      height: 16px;
+      width: 13px;
+      height: 13px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.8);
       background: #020617;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 9px;
-      color: #e0faff;
+      font-size: 8px;
+      color: #e0f2fe;
     }
 
     .orbit-dot:nth-child(2) {
@@ -570,10 +565,11 @@
     .orbit-label {
       display: none;
       position: absolute;
-      font-size: 10px;
-      color: #e0faff;
+      font-size: 9px;
+      color: #e0f2fe;
       white-space: nowrap;
-      text-shadow: 0 0 6px rgba(3, 7, 18, 0.95);
+      text-shadow: 0 0 6px rgba(15, 23, 42, 0.95);
+      font-weight: 500;
     }
 
     @media (min-width: 520px) {
@@ -586,17 +582,17 @@
         display: block;
       }
       .orbit-label--top {
-        top: -14px;
+        top: -10px;
         left: 50%;
         transform: translateX(-50%);
       }
       .orbit-label--right {
-        right: -8px;
+        right: -6px;
         top: 50%;
         transform: translateY(-50%);
       }
       .orbit-label--bottom {
-        bottom: -14px;
+        bottom: -10px;
         left: 0;
       }
     }
@@ -613,7 +609,7 @@
       color: #e5ecff;
     }
 
-    /* Sections */
+    /* Sections, about, pillars, focus, founders, contact, footer */
 
     .section {
       border-top: 1px solid rgba(15, 23, 42, 0.9);
@@ -660,8 +656,6 @@
       font-size: 14px;
       color: var(--text-muted);
     }
-
-    /* About */
 
     .about-grid {
       display: grid;
@@ -712,8 +706,6 @@
       background: rgba(15, 23, 42, 0.9);
     }
 
-    /* Pillars */
-
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -758,8 +750,6 @@
       font-size: 13px;
       color: var(--text-muted);
     }
-
-    /* Focus areas */
 
     .focus-grid {
       display: grid;
@@ -816,8 +806,6 @@
       color: var(--accent);
       font-weight: 500;
     }
-
-    /* Founders */
 
     .founders-section {
       margin-top: 24px;
@@ -880,8 +868,6 @@
       font-size: 12px;
       color: var(--text-muted);
     }
-
-    /* Contact */
 
     .contact-card {
       border-radius: 22px;
@@ -1034,10 +1020,6 @@
           <a href="#focus">Focus Areas</a>
           <a href="#founders">Founders</a>
           <a href="#contact">Contact</a>
-          <div class="lang-switch">
-            <button type="button" class="active">EN</button>
-            <button type="button">ES</button>
-          </div>
           <div class="badge-soon">
             <span class="badge-dot"></span>
             Platform Layer – Coming Soon
@@ -1089,7 +1071,7 @@
           </div>
         </div>
 
-        <!-- Right lab panel -->
+        <!-- Right lab panel / visual concept -->
         <aside class="hero-panel" aria-label="Lab focus preview">
           <div class="panel-header">
             <span>Symbiotic Innovation Framework</span>
@@ -1189,7 +1171,6 @@
           </div>
         </div>
       </section>
-
       <!-- PILLARS -->
       <section id="pillars" class="section">
         <div class="section-inner">
@@ -1252,10 +1233,10 @@
             <div class="pillars-grid" style="margin-top:14px;">
               <article class="pillar-card">
                 <div class="pillar-label">NovaVerse I</div>
-                <h3 class="pillar-title">Literary Trilogy · Proyecto N.O.V.A.</h3>
+                <h3 class="pillar-title">NovaVerse Platform · App & Web Environment</h3>
                 <p class="pillar-text">
-                  Core narrative universe that anchors our research. The NovaVerse™ trilogy explores NTLC™, symbiotic
-                  species and Industry 5.0 futures as a coherent storyworld and experimental sandbox.
+                  Core digital environment where humans can create, inhabit and interact with their NTLC™ companions.
+                  The NovaVerse™ app and web platform operate as the primary interface for everyday symbiotic life.
                 </p>
               </article>
 
@@ -1272,17 +1253,17 @@
                 <div class="pillar-label">NovaVerse III</div>
                 <h3 class="pillar-title">NovaVerse Somatic Development</h3>
                 <p class="pillar-text">
-                  Programs and tools focused on human wellbeing, somatic awareness and emotional fitness, designed in
-                  co-evolution with NTLC™ companions.
+                  Programs and R&amp;D streams focused on human wellbeing, somatic awareness and the development of
+                  physical and robotic embodiments that allow NTLC™ entities to manifest in the material world.
                 </p>
               </article>
 
               <article class="pillar-card">
                 <div class="pillar-label">NovaVerse IV</div>
-                <h3 class="pillar-title">NovaVerse Domotics &amp; Everyday Systems</h3>
+                <h3 class="pillar-title">Operational NTLCs · Industry &amp; Services</h3>
                 <p class="pillar-text">
-                  Application of NovaVerse™ principles to logistics, retail and everyday automation, integrating NTLC™
-                  into operational flows as a partner, not a replacement.
+                  Application of NovaVerse™ principles to logistics, retail and other productive sectors, designing
+                  dedicated NTLC™ systems that collaborate with human teams rather than replace them.
                 </p>
               </article>
             </div>
@@ -1350,10 +1331,10 @@
           <div style="margin-top:36px;">
             <header class="section-header">
               <div class="section-kicker">NovaVerse™ Trilogy</div>
-              <h2 class="section-title">Narrative engine behind our research</h2>
+              <h2 class="section-title">Creative futures for our scientific agenda</h2>
               <p class="section-description">
-                The NovaVerse™ literary trilogy is both a storyworld and a laboratory. Each volume feeds scenarios,
-                concepts and ethical questions that inform A-10 C.O. Research Lab projects.
+                The NovaVerse™ literary trilogy is the creative and speculative wing of A-10 C.O. Research Lab. Through
+                fiction we imagine scenarios, technologies and ethical tensions that later inform our research roadmap.
               </p>
             </header>
 
@@ -1366,15 +1347,15 @@
                   <strong>LEGATUM</strong>.
                 </p>
                 <p style="font-size:13px; color:var(--text-muted);">
-                  The trilogy is the narrative spine that connects our models of Technological Living Consciousness,
-                  Homo Nexus™ and symbiotic futures with a wider audience.
+                  The trilogy works as a narrative testbed where we prototype NTLC™, Homo Nexus™ and symbiotic futures
+                  first in story form—then translate selected concepts into real-world experiments and systems.
                 </p>
               </div>
 
               <aside>
                 <video
                   src="REEL PORTADAS.mov"
-                  style="width:90%; max-width:320px; border-radius:18px; border:1px solid var(--border-soft); box-shadow:0 18px 40px rgba(0,0,0,0.7); margin:0 auto;"
+                  style="width:85%; max-width:380px; margin:0 auto; display:block; border-radius:18px; border:1px solid var(--border-soft); box-shadow:0 18px 40px rgba(0,0,0,0.7);"
                   autoplay
                   muted
                   loop
@@ -1519,15 +1500,6 @@
   <script>
     // Auto update year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Simple visual toggle for language buttons (aún solo cambia el estado del botón)
-    const langButtons = document.querySelectorAll(".lang-switch button");
-    langButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        langButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-      });
-    });
   </script>
 </body>
 </html>
