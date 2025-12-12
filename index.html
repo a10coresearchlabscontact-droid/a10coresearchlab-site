@@ -282,6 +282,29 @@
   object-fit: cover;
   display: block;
 }
+    /* ===============================
+   ORBIT LABEL FIX – RIGHT SIDE
+   =============================== */
+
+.orbit-label {
+  position: absolute;
+  font-size: 9px;
+  color: #e2f2fe;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.orbit-label.right {
+  right: -6px;
+  bottom: -16px;
+  top: auto;
+  transform: none;
+  text-align: center;
+}
+
+.orbit-label.two-line {
+  line-height: 1.15;
+}
   </style>
 </head>
 <body>
@@ -404,7 +427,7 @@
                 <div class="orbit-dot dot-bottom">∞</div>
 
                 <div class="orbit-label top">Human Experience</div>
-                <div class="orbit-label right">Systems &amp; Industry</div>
+               <div class="orbit-label right two-line">System<br>and Industry</div>
                 <div class="orbit-label bottom">Continuity &amp; Legacy</div>
               </div>
             </div>
