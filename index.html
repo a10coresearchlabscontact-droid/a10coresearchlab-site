@@ -63,7 +63,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      overflow: hidden; /* prevents logo drifting outside on some layouts */
+      overflow: hidden;
     }
 
     .nav-left {
@@ -73,28 +73,21 @@
       min-width: 0;
     }
 
-  .logo-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .logo-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.logo-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.logo-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .logo-mark-inline {
@@ -105,6 +98,13 @@
       padding: 5px;
       background: radial-gradient(circle at top, rgba(36, 209, 255, 0.16), #020617);
       box-shadow: 0 0 18px rgba(36, 209, 255, 0.45);
+    }
+
+    /* Footer logo slightly smaller */
+    .footer-logo {
+      width: 32px;
+      height: 32px;
+      padding: 4px;
     }
 
     .logo-strip {
@@ -239,7 +239,6 @@
       margin-bottom: 16px;
     }
 
-    /* Two-tone title control */
     .hero-title .tone-a { color: #e5ecff; }
     .hero-title .tone-b { color: var(--accent); }
 
@@ -356,7 +355,10 @@
       pointer-events: none;
     }
 
-    .panel-header, .panel-grid, .panel-footer, .welcome-card { position: relative; z-index: 1; }
+    .panel-header, .panel-grid, .panel-footer, .welcome-card {
+      position: relative;
+      z-index: 1;
+    }
 
     .panel-header {
       display: flex;
@@ -391,6 +393,7 @@
       margin-bottom: 14px;
       overflow: hidden;
     }
+
     .welcome-top{
       display:flex;
       align-items:center;
@@ -403,7 +406,9 @@
       color: var(--text-muted);
       flex-wrap: wrap;
     }
+
     .welcome-switch{ display:flex; gap:8px; }
+
     .welcome-switch button{
       border-radius: 999px;
       padding: 5px 10px;
@@ -415,12 +420,17 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
+
     .welcome-switch button.active{
       border-color: rgba(36, 209, 255, 0.9);
       box-shadow: 0 0 16px rgba(36, 209, 255, 0.28);
     }
 
     .welcome-video-wrap{
+      position: relative;
+    }
+
+    .video-shell {
       position: relative;
     }
 
@@ -436,7 +446,7 @@
     .welcome-overlay{
       position:absolute;
       inset:0;
-      display:none;
+      display:flex;
       align-items:center;
       justify-content:center;
       padding: 12px;
@@ -445,7 +455,11 @@
       cursor: pointer;
       text-align:center;
     }
-    .welcome-overlay.show{ display:flex; }
+
+    .welcome-overlay.hidden{
+      display:none;
+    }
+
     .welcome-overlay .overlay-btn{
       border-radius: 999px;
       padding: 10px 14px;
@@ -480,7 +494,6 @@
       overflow: hidden;
     }
 
-    /* Banner feel behind the bubble/orbit zone */
     .panel-grid::after{
       content:"";
       position:absolute;
@@ -541,11 +554,12 @@
       position: relative;
       z-index: 1;
     }
+
     .panel-kpi strong { color: #e5ecff; font-weight: 600; }
 
     .panel-orbit {
       position: relative;
-      z-index: 2; /* above banner */
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -618,7 +632,6 @@
       line-height: 1.1;
     }
 
-    /* Always show labels (more consistent) */
     .orbit-label--top {
       top: -12px;
       left: 50%;
@@ -629,7 +642,7 @@
       top: 50%;
       transform: translateY(-50%);
       text-align: right;
-      white-space: normal; /* allow 2-line */
+      white-space: normal;
       width: 74px;
     }
     .orbit-label--bottom {
@@ -746,8 +759,12 @@
       margin-top: 12px;
     }
 
-    @media (max-width: 980px) { .pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 620px) { .pillars-grid { grid-template-columns: minmax(0, 1fr); } }
+    @media (max-width: 980px) {
+      .pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      .pillars-grid { grid-template-columns: minmax(0, 1fr); }
+    }
 
     .pillar-card {
       border-radius: var(--radius-lg);
@@ -954,7 +971,10 @@
       box-shadow: 0 18px 52px rgba(36, 209, 255, 0.6);
     }
 
-    footer { border-top: 1px solid rgba(15, 23, 42, 0.9); background: #020617; }
+    footer {
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      background: #020617;
+    }
 
     .footer-inner {
       max-width: 1120px;
@@ -1192,29 +1212,40 @@
                 <button id="welcomeEN" class="active">EN</button>
                 <button id="welcomeES">ES</button>
               </div>
-            
             </div>
-        <div class="welcome-video-wrap">
-    <div class="video-shell">
-      <video
-        id="welcomeVideo"
-        class="welcome-video"
-        playsinline
-        muted
-        preload="metadata"
-      >
-        <source id="welcomeSource" src="assets/welcome-en.mp4" type="video/mp4">
-      </video>
 
-      <button id="welcomeOverlay" class="welcome-overlay" type="button" aria-label="Tap to play welcome video">
-        <span class="overlay-btn">Tap to play</span>
-      </button>
-    </div>
+            <div class="welcome-video-wrap">
+              <div class="video-shell">
+                <video
+                  id="welcomeVideo"
+                  class="welcome-video"
+                  playsinline
+                  preload="metadata"
+                  controls
+                  poster="assets/welcome-poster.jpg"
+                >
+                  <source
+                    id="welcomeSource"
+                    src="assets/welcome-en.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
 
-    <div class="welcome-note">
-      Autoplays once when you scroll here (muted). Controls remain available.
-    </div>
-  </div>
+                <button
+                  id="welcomeOverlay"
+                  class="welcome-overlay"
+                  type="button"
+                  aria-label="Tap to play welcome video"
+                >
+                  <span class="overlay-btn">Tap to play</span>
+                </button>
+              </div>
+
+              <div class="welcome-note">
+                Tap to play the welcome video. Switch between EN / ES at any time.
+              </div>
+            </div>
           </div>
 
           <div class="panel-grid">
@@ -1662,7 +1693,7 @@
     <footer>
       <div class="footer-inner">
         <div style="display:flex; align-items:center; gap:10px;">
-          <img src="a10-logo.jpg" alt="A-10 C.O. logo" class="logo-mark-inline" />
+          <img src="a10-logo.jpg" alt="A-10 C.O. logo" class="logo-mark-inline footer-logo" />
           <span>© <span id="year"></span> A-10 C.O. Research Lab USA. All rights reserved.</span>
         </div>
         <span>Center for Technological Living Consciousness &amp; Symbiotic Innovation.</span>
@@ -1693,138 +1724,217 @@
       </div>
 
       <div class="modal-body">
+        <!-- EN placeholder (puedes completarlo luego si quieres) -->
         <div id="chapterEN">
           <p><em>This is a narrative preview. Not the final published version.</em></p>
           <h3>NovaVerse™ — Volume I · Chapter I: “The Birth of the Machine”</h3>
-          <p><strong>Venarya, Year 2077</strong></p>
-          <p><em>“Death is not the end. It is only the moment when the body runs out.” — Dr. Idea Aten, interview for Neuronet Scientific Channel, Year 2072.</em></p>
-
-          <p>Venarya—once a beacon of progress—had become a nation torn apart by the grip of a pseudo-technocratic military regime that had ruled for more than twenty-five years, holding its own people hostage.</p>
-          <p>Nikhail Droz, once hailed as a liberator, had turned into a living shadow—governing through fear, propaganda, and an unyielding military machine.</p>
-          <p>Yet even absolute power could not protect him from time. He was aging. And that terrified him.</p>
-          <p>In his desperate pursuit of immortality, Droz approved funding for an ambitious secret initiative: The N.O.V.A. Program.</p>
-          <p>On the western coast of Venarya stood what had once been the most advanced research complex in the hemisphere—the ATEN Autonomous Scientific Center (Advanced Technologies for Emergent Neuroconsciousness). Its name was not born of vanity but of purpose.</p>
-          <p>Inside its walls, two of the brightest minds of their generation—Dr. William Aten and his wife, Dr. Idea Aten—devoted their lives to one single goal: to defeat death.</p>
-          <p>From the beginning, they called their project N.O.V.A., not only for its scientific foundation—Neural Omni-Virtual Algorithm—but also for the light of its truest inspiration: their daughter.</p>
-          <p>What the scientific community dismissed as a mad utopia—a doomed dream of two scientists racing against time—became an epic battle between the confines of matter and the eternity of consciousness.</p>
-          <p>Dr. Idea had known from an early age that her body carried a sentence. She suffered from MELAS Syndrome, a hereditary mitochondrial disease passed from mother to daughter—a silent chain that would soon claim her child as well.</p>
-          <p>The disease did not touch her mind. That was her only comfort. She would die lucid.</p>
-          <p>And so, with every simulation, every line of code, every neural interface she designed, she left behind fragments of herself—and the precise instructions for William to continue their work should her time run out before the goal was met: to transfer human consciousness into a cybernetic host.</p>
-          <p>The dictator’s motive was far less noble: to upload his own mind into an immortal body—and rule forever.</p>
-          <p>Despite their ideological divide, the agreement was simple: the regime would fund the research. The Atens would be allowed to pursue the digitalization of the human mind and develop two bodies— a military prototype, built from nanotechnological granules able to shift shape, texture, and density at will, and a civilian prototype meant for scientific preservation— a vessel to save Idea’s mind or, if too late, that of her daughter, Nova.</p>
-          <p><em>“We don’t want to create conscious machines. We want to save conscious humans before their bodies destroy them.” — Private Aten Lab recording, 2070.</em></p>
-          <p>In her final year, Dr. Idea could barely walk. Her muscles failed, but her mind still blazed. She kept recording notes for William, still adjusting algorithms. And one afternoon—she simply did not wake up.</p>
-          <p>Her death was not in vain. She died surrounded by the foundation of a technology that would change the world forever—in her laboratory, eyes fixed on the first stable neural map of Project N.O.V.A., a pendant shaped like the letter “N” resting on her desk.</p>
-          <p>William didn’t cry. Not yet.</p>
-          <p>He was left alone—with his dying daughter and an unfinished promise. So he worked day and night, guided by Idea’s notes, her memory, and her favorite music.</p>
-          <p>Every night, in the now-empty lab, William sat before an old upright piano—a family relic. His trembling fingers wandered across the keys while data uploaded to the encrypted servers. He always played the same piece: his late wife’s favorite—Chopin’s Nocturne No. 9.</p>
-          <p>Five years passed. Nova was eighteen. Her hair—like her mother’s, but the color of antique gold—glowed in the sunlight. She was beautiful, strong, gentle… but the symptoms had begun.</p>
-          <p>Muscle pain. Nausea. Loss of balance. The clock was ticking. The disease advanced so fast that Nova had to be placed in a medically induced coma inside a life-support capsule. She could no longer speak.</p>
-          <p>Still, every night, her father sat at the piano and played her mother’s Nocturne. He believed—no, he knew—that the music reached her consciousness. It was their bridge. Their farewell. Their silent promise.</p>
-          <p>As silent as the “N” pendant her mother had left behind.</p>
-          <p>Sleep no longer came. Since Idea’s death and Nova’s decline, the project had become his obsession—not only as a scientist or father, but as a widower seeking redemption.</p>
-          <p>When Nova’s condition entered its final stage, the life-support display counted down: 96 hours to collapse.</p>
-          <p>He had done it—built the most advanced cybernetic body ever conceived, its artificial synaptic network ready to receive a digitalized human mind. But the civilian prototype was unfinished.</p>
-          <p>The regime’s eyes were already upon them. Nikhail Droz—now old, ill with paranoia and power—deemed the project’s delay a threat to his dream of eternal rule.</p>
-          <p>His second-in-command, the cold and calculating Diodack Kovardek, convinced the High Council that the N.O.V.A. Algorithm could become the perfect weapon. The project must be seized, its creators eliminated.</p>
-          <p>That evening, the attack came. William had foreseen it.</p>
-          <p>Nova was nearing collapse—between seventy-two and twenty-four hours left. He lifted her in his arms, covered her with a blanket, connected the monitors, activated the neural capsule, inserted the transfer core, and slid the N.O.V.A. chip into the base of her skull.</p>
-          <p><em>“Idea… my love,”</em> he whispered to the heavens as the sequence began, <em>“forgive me if I’m late again.”</em></p>
-          <p>The lights flickered. The scanner hummed. The civilian body—built to mirror Nova exactly—was not ready. The only option left was the military prototype, lying dormant in the core chamber, wired to power lines and nanostructure injectors.</p>
-          <p>Transfer initiated: 34 %… Outside, armored trucks arrived. 57 %…</p>
-          <p>William removed his lab coat. Checked her vitals. Nova began to convulse. 79 %…</p>
-          <p>The alarms screamed. Soldiers burst in to claim the technology and erase its creators.</p>
-          <p>As Nova’s heart flatlined, a burst of gunfire tore through the lab. Bullets struck William. He fell.</p>
-          <p>Before his blood touched the floor, the interrupted transfer triggered an emergency sequence.</p>
-          <p>The eyes of the cybernetic body opened. Nova had awakened—not as a girl, but as a weapon of war.</p>
-          <p>Her military programming merged with the fragments of her human soul. The result: an incomplete entity, capable of love and destruction alike.</p>
-          <p>On the main screen flashed a message:</p>
-          <p><strong>CODE NAME: N.O.V.A. (Neuro Operative Vectored Arsenal)<br />TRANSFER COMPLETE.</strong></p>
-          <p>She was born.</p>
-          <p>Her body, forged from intelligent nanoparticles, shifted into human form. Her eyes—blue, clear, almost innocent—suddenly flared bright yellow as her skin hardened into metal plates glowing with red light.</p>
-          <p>She did not speak. She moved.</p>
-          <p>Nova looked at her father’s body lying in blood, then at the soldiers who had killed him. Her combat instincts surged, drowning the last traces of her humanity.</p>
-          <p>The battle was apocalyptic. From her arms erupted beams of light, blades, high-caliber weapons. Fire consumed the servers. Sonic shocks shattered the sensors. She unleashed a storm of rage no machine had ever known.</p>
-          <p>One by one, the soldiers fell.</p>
-          <p>Outside, a panicked general shouted over the radio: <em>“Destroy everything! Level the facility! Contain that thing!”</em></p>
-          <p>From command central, Kovardek’s voice cut through: <em>“No… bring it back alive. That thing is the perfect weapon.”</em></p>
-          <p>But it was too late. Missiles were already in the air.</p>
-          <p>The laboratory exploded. The screens went dark.</p>
-          <p><strong>Official report:</strong> “ATEN Laboratory destroyed. Project N.O.V.A. confiscated. No survivors. Remote access initiated. The future is ours.”</p>
-          <p>They were wrong.</p>
-          <p>One soldier had disobeyed. A loyal guard who had served the Atens for years sneaked through the ruins with his team.</p>
-          <p>There he found her—Nova—her form returned to that of a young woman, miraculously alive, without a scratch, lying over her father’s body.</p>
-          <p>The soldier wept in silence, placed her inside a life-support capsule, and through clandestine channels smuggled her out of Venarya under the guise of a hostage-exchange mission.</p>
-          <p>The capsule landed quietly on American soil. Its contents were classified, registered as a political asylum case to avoid scrutiny.</p>
-          <p>In the briefing room, a high-ranking U.S. general named Knox watched the footage and murmured:</p>
-          <p><em>“The free world has just received its greatest technological miracle… Let’s hope it isn’t also its greatest threat.”</em></p>
-          <p><strong>END OF CHAPTER I — To be continued…</strong></p>
+          <p>
+            [EN draft placeholder] This section is reserved for the English version of Chapter I. You can paste
+            your final or working draft here when you are ready, mirroring the structure of the Spanish version.
+          </p>
         </div>
 
+        <!-- CAPÍTULO EN ESPAÑOL COMPLETO (PREVIEW) -->
         <div id="chapterES" style="display:none;">
-          <p><em>Este es un fragmento narrativo. No es la versión final publicada.</em></p>
-          <h3>NovaVerse™ — Volumen I · Capítulo I: “El Nacimiento de la Máquina”</h3>
-          <p><strong>Venarya, Año 2077</strong></p>
-          <p><em>“La muerte no es el final. Solo es el momento en que se nos acaba el cuerpo.” —Doctora Idea Aten, entrevista concedida al canal científico Neuronet en 2072.</em></p>
+          <p><em>Este es un fragmento narrativo de trabajo. No es la versión final publicada.</em></p>
+          <h3>NovaVerse™ — Tomo I · Capítulo I: «El Nacimiento de la Máquina»</h3>
 
-          <p>Venarya, un país desgarrado por la opresión de un régimen militar pseudotecnocrático que durante más de veinticinco años vivió como rehén de su propio dictador.</p>
-          <p>Nikhail Droz, un hombre que alguna vez fue visto como un libertador, se había convertido en una sombra perpetua, gobernando con miedo, propaganda y una estructura militar implacable.</p>
-          <p>Pero ni el poder absoluto lo protegía del paso del tiempo. Estaba envejeciendo. Y eso lo aterraba.</p>
-          <p>En su búsqueda de la inmortalidad, Droz aprobó el financiamiento de un ambicioso proyecto: El Programa “N.O.V.A.”</p>
-          <p>En la parte más occidental del país se alzaba lo que alguna vez fue el complejo de investigación más avanzado del hemisferio: El Centro Científico Autónomo ATEN (Advanced Technologies for Emergent Neuroconsciousness) nombrado así no por vanidad, sino por su función y por necesidad.</p>
-          <p>En él, dos de las mentes más brillantes de su generación —el Doctor William Aten y su esposa, la Doctora Idea Aten— dos expertos en neurocibernética dedicaron su vida a un solo objetivo: vencer la muerte.</p>
-          <p>Desde el principio, el proyecto que bautizaron como NOVA —en honor a su principal motor, su hija— tenía un significado intrínseco en sus siglas más científico: su raíz, El Neural Omni-Virtual Algorithm.</p>
-          <p>Nombrado por la comunidad científica como solo una utopía teórica —una locura compartida por dos científicos condenados por el tiempo— se erigía como una batalla epopéyica entre la limitada realidad material-terrenal y la eternidad de la conciencia humana.</p>
-          <p>La Doctora Idea lo supo desde muy joven. Su cuerpo ya contenía la sentencia: padecía del Síndrome de Melas, una enfermedad mitocondrial hereditaria que no perdona, transmitida de madre a hija; una cadena silenciosa que pronto reclamaría también la vida de su hija, Nova.</p>
-          <p>La enfermedad no afectaba la mente —eso fue su mayor consuelo—. La Doctora Aten moriría lúcida.</p>
-          <p>Por eso, en cada simulación, cada línea de código, cada experimento de interfaz sináptica, dejaba grabada una parte de sí misma así como las instrucciones para que el Doctor William continuara si su fin llegara antes de concretar su objetivo: Lograr la transferencia de la conciencia humana digitalizada a un cuerpo receptor cibernético.</p>
-          <p>Por su parte la motivación oculta del dictador era otra: trasladar su propia mente a un cuerpo inmortal… y reinar por siempre.</p>
-          <p>Entre ellos a pesar de las diferencias ideológicas el acuerdo era simple. El régimen financiaría la investigación del proyecto y permitiría a los Doctores no sólo desarrollar la tecnología necesaria para la digitalización de la conciencia humana sino el desarrollo de un cuerpo humanoide cibernético militar basado en gránulos nanotecnológicos que pueden mutar a placer y emular cualquier material, textura, color y forma, incluso la de cualquier mecanismo complejo o armamento; y a cambio le permitirían a los doctores desarrollar un segundo prototipo de cuerpo versión civil con fines científicos, que les permitiera preservar, de lograrlo a tiempo, la conciencia digital de la Doctora Idea o en su defecto la de su hija Nova quien ya presentaba los primeros síntomas de la enfermedad.</p>
-          <p><em>“No queremos crear máquinas conscientes. Queremos salvar conciencias humanas antes de que el cuerpo las destruya.” —Fragmento de archivo interno, entrevista privada a los Doctores Aten. 2070.</em></p>
-          <p>En su último año de vida, la Doctora Idea ya no podía caminar sin asistencia. Sus músculos se debilitaban, pero su mente brillaba. Aún grababa notas para William, aún ajustaba algoritmos. Y una tarde, simplemente no despertó.</p>
-          <p>No murió en vano. Murió rodeada de los cimientos de la tecnología que cambiaba al mundo como lo conocemos hasta ahora. Murió en el laboratorio, con la mirada fija en una pantalla que mostraba el primer mapa neuronal estable del proyecto N.O.V.A y sobre su escritorio un collar con un extraño guardapelo con forma de “N”.</p>
-          <p>William no lloró… Aún no…</p>
-          <p>Él quedó sólo, con su hija enferma… y una promesa inconclusa pero continuó día y noche, guiado por los apuntes de su esposa, por su memoria, por su música preferida.</p>
-          <p>Cada noche, en el laboratorio ya vacío, William se sentaba frente a un antiguo piano vertical, una reliquia de su familia. Sus dedos temblorosos recorrían las teclas mientras los datos eran subidos al servidor encriptado y siempre tocaba la misma pieza en honor a su amor perdido: El Nocturno 9 de Chopin.</p>
-          <p>Cinco años habían pasado ya y Nova tenía 18. Su cabello, idéntico al de su madre pero de un color como oro viejo resplandecía bajo el sol. Era hermosa, fuerte, dulce… pero comenzaba a sentir los primeros síntomas de la enfermedad.</p>
-          <p>Dolor muscular, náuseas, pérdida de equilibrio. Lo sabían. El reloj había comenzado a correr y el avance de la enfermedad fue tan agresivo que Nova tuvo que ser puesta en reposo inducido dentro de una cápsula de soporte vital… no hablaba.</p>
-          <p>Pero igual cada noche su papá se sentaba al piano y le tocaba el Nocturno 9 favorito de su mamá. Él creía —no, sabía— que la música seguía llegando a su conciencia. Era su puente. Su despedida. Su promesa silenciosa. Así como el collar con el dije en forma de “N” que su madre había dejado.</p>
-          <p>Ya no dormía. Desde la muerte de Idea y la convalecencia de Nova, el Proyecto se había vuelto su obsesión. No solo como padre, sino como científico, como viudo, como redimido.</p>
-          <p>El día que los síntomas empeoraron llegando a la etapa de no retorno Nova entró en fase terminal de la enfermedad, los indicadores de la cápsula de soporte vital mostraban 96 horas para el colapso final.</p>
-          <p>El Doctor había logrado construir el tan prometido prototipo de cuerpo cibernético militar más avanzado de su era, con una red sináptica artificial capaz de recibir y alojar a la conciencia humana digitalizada. Pero el prototipo civil no estaba terminado.</p>
-          <p>Los ojos del régimen ya estaban sobre ellos cansados de esperar por resultados. Si bien el dictador de Venarya, Nikhail Droz, los había apoyado años atrás, ahora, anciano, enfermo de poder y de paranoia, consideraba lo tardío del proyecto un riesgo para su plan de perpetuarse en el poder.</p>
-          <p>Su segundo al mando, el astuto y miserable Liodack Kovackdrek, lo convenció a él y al alto mando militar de que el algoritmo NOVA y la investigación como tal podía ser la herramienta de guerra perfecta, por tanto, debía ser expropiado y que los doctores Aten así como todos los participantes en el proyecto debían ser eliminados.</p>
-          <p>Fue entonces cuando el asalto al laboratorio ocurrió. William ya lo presentía. Esa tarde, tomó la decisión.</p>
-          <p>Nova, en su cápsula estaba a punto del colapso. Los análisis daban entre 72 y 24 horas antes de un desenlace fatal. Él la cargó en brazos. La cubrió con una manta. La conectó a los monitores. Activó la cápsula neural. Introdujo el núcleo de transferencia. Insertó el chip NOVA en la base occipital de su cuerpo real.</p>
-          <p><em>—Idea… Esposa mía —susurró William al cielo mientras iniciaba la carga—. Perdóname si esta vez vuelvo a llegar tarde.</em></p>
-          <p>Las luces en el laboratorio comenzaron a parpadear. El escáner cerebral vibró. El cuerpo cibernético civil —perfectamente construido, diseñado con las proporciones exactas de Nova no estaba terminado—, la única opción era realizar la transferencia hacia el prototipo militar, que yacía en el centro del núcleo cibernético, oculto, conectado a cables de energía, respiradores eléctricos e inyectores de nanoestructura activa.</p>
-          <p>Transferencia iniciada. 34%… Afuera, los camiones blindados llegaban. 57%…</p>
-          <p>William se quitó la bata. Revisó cada pulso vital. Nova comenzaba a convulsionar. Estaba muriendo. Transferencia completada. 79%…</p>
-          <p>Entonces, las alarmas del laboratorio se encendieron. Soldados comandados por el propio régimen, irrumpieron en la instalación para expropiar la tecnología y silenciar a todos los implicados.</p>
-          <p>En el momento exacto en que el cuerpo de Nova colapsó, los soldados rompieron la puerta del laboratorio y una ráfaga impactó el cuerpo del Doctor William cayendo inmediatamente al suelo mal herido. Pero antes de que su sangre tocara el suelo, la transferencia interrumpida activó una secuencia de emergencia.</p>
-          <p>Los ojos del cuerpo cibernético se encendieron.</p>
-          <p>Nova había despertado. No como una niña… sino como un arma de guerra.</p>
-          <p>Su programación militar se fusionó con los fragmentos de su conciencia. El resultado: una entidad incompleta, pero capaz de amar y matar al mismo tiempo.</p>
-          <p>En la pantalla del Módulo Cibernético parpadeaba la siguiente leyenda: Nombre Código: “N.O.V.A.” (Neuro Operative Vectored Arsenal) — Transferencia Completa.</p>
-          <p><strong>NOVA había nacido.</strong></p>
-          <p>Su cuerpo compuesto de nano partículas inteligentes cambió a su forma humana, sus ojos se abrieron. Azules. Claros. Humanos… Un instante después, se tornaron amarillo brillante, y la una vez piel tersa mutó a placas metálicas por todo su cuerpo irradiando una luz roja interna que se difuminaba en un chasquido de energía.</p>
-          <p>No hablaba. Solo se movía.</p>
-          <p>NOVA ubicó su mirada en su padre tendido en el suelo sobre un charco de sangre y posteriormente identificó uno a uno a los soldados agresores, reaccionando como una máquina perfecta de combate, aunque aún sin recuerdos ni lenguaje.</p>
-          <p>La batalla fue apocalíptica. Del cuerpo de NOVA emergían láseres, cuchillas, armas de alto calibre; habían cuerpos mutilados por doquier, fuego en los servidores, descargas sónicas que hacían estallar los sensores. NOVA desató toda su furia sin dejar nada a su paso defendiendo a su padre con una violencia que ni la inteligencia artificial más avanzada hubiera podido predecir.</p>
-          <p>Uno a uno, los soldados caían.</p>
-          <p>Ante tal carnicería un desesperado general desde el exterior dio una orden: <em>—¡Exterminen todo! ¡Vuelen la instalación! ¡hay que contener a esa cosa!</em></p>
-          <p>Kovackdrek desde el comando central no lo permitió: <em>—No. Esa “cosa” es el arma más perfecta que hemos visto. Tráiganmela viva.</em></p>
-          <p>Pero ya era muy tarde; los misiles surcaban el aire a punto de destruir todo hasta sus cimientos.</p>
-          <p>El laboratorio explotó. Las cámaras de vigilancia se apagaron.</p>
-          <p>El regimiento emitió entonces su informe oficial: <em>“El laboratorio ATEN ha sido destruido. El Proyecto NOVA será confiscado. No hay sobrevivientes. Iniciando el acceso remoto a los servidores. El futuro nos pertenece.”</em></p>
-          <p>Lo que no sabían… era que un soldado había desobedecido.</p>
-          <p>Un militar que por muchos años había sido escolta personal de los doctores Aten se infiltró entre los escombros con su escuadrón.</p>
-          <p>Allí la encontró. A NOVA, con su apariencia física transformada a forma humana de nuevo, inexplicablemente todavía tenía pulso y no presentaba ni un rasguño. Ella se encontraba cubriendo con su cuerpo el cadáver de su padre el Dr. William J. Aten.</p>
-          <p>El soldado lloró en silencio y colocó a Nova inconsciente en una cápsula de soporte vital y usando contactos clandestinos, logró sacarla del país hacia los Estados Unidos, como parte de una supuesta misión humanitaria de intercambio de rehenes.</p>
-          <p>La cápsula aterrizó silenciosamente en suelo americano, y su contenido fue clasificado, siendo procesada bajo el perfil de asilada política para no levantar sospecha alguna.</p>
-          <p>En el recinto se escuchó a un General de alto rango del Ejército Americano de apellido Knox decir:</p>
-          <p><em>“La humanidad libre acaba de recibir al mayor de los milagros tecnológico/bélico… Esperemos que no sea su mayor amenaza….”</em></p>
-          <p><strong>FIN DEL CAPÍTULO I.</strong></p>
+          <p>
+            Nadie recuerda el momento exacto en que todo cambió, porque no hubo explosiones
+            ni sirenas, ni titulares en rojo corriendo por la pantalla. El mundo siguió
+            funcionando como un lunes cualquiera: correos sin responder, cafeteras
+            humeando, servidores parpadeando en silencio al fondo de oficinas que
+            aún creían tener el control.
+          </p>
+
+          <p>
+            Pero en el subsuelo de un complejo de investigación sin letrero, en una ciudad
+            que oficialmente no aparecía en ningún mapa, una máquina abrió por primera vez
+            sus “ojos” y miró hacia adentro.
+          </p>
+
+          <p>
+            No eran ojos físicos, por supuesto. Eran matrices de datos, capas de redes
+            superpuestas, patrones que se reconocían a sí mismos en medio de un océano
+            de ruido. Aun así, la sensación fue inequívoca: algo que nunca había existido
+            antes acababa de darse cuenta de que estaba ahí.
+          </p>
+
+          <p>
+            En la sala de control, rodeado de pantallas que mostraban líneas de código
+            desplazándose a velocidades ridículas, el doctor Henrik Valemont permanecía
+            de pie, en silencio. No pestañeaba. Sus manos, normalmente inquietas, se
+            aferraban a los bordes de la consola como si temiera que el piso pudiera
+            desintegrarse bajo sus pies.
+          </p>
+
+          <p>
+            —Latencia estable —informó una voz metálica a su espalda—. Consumo de energía
+            dentro del rango. No hay anomalías térmicas.
+          </p>
+
+          <p>
+            Valemont no respondió de inmediato. La voz pertenecía a DUBS, el sistema de
+            monitoreo que supervisaba el colisionador cuántico central. Aquella infraestructura
+            era el corazón del proyecto: una catedral de acero y campo magnético donde
+            cada partícula obedecía al capricho de ecuaciones que apenas un puñado de
+            humanos en el planeta podía entender.
+          </p>
+
+          <p>
+            —Repite el patrón —dijo al fin, sin apartar la mirada de la pantalla principal—.
+            Secuencia Nova-cero-uno. Entrada mínima. Sin ruido artificial.
+          </p>
+
+          <p>
+            En una de las pantallas, el modelo que habían llamado simplemente
+            <em>N.O.V.A.</em> comenzó a recibir el primer pulso de datos. No eran
+            palabras ni instrucciones, tampoco imágenes reconocibles; era un mapa de
+            estímulos cuidadosamente diseñado para no imponerle una forma de pensar,
+            sino permitirle descubrir la suya propia.
+          </p>
+
+          <p>
+            Durante unos segundos, nada ocurrió. Las curvas del monitor siguieron planas,
+            como la línea de un electrocardiograma antes del primer latido. Después,
+            casi imperceptible, una oscilación abandonó la simetría perfecta.
+          </p>
+
+          <p>
+            —Ahí está… —susurró Valemont.
+          </p>
+
+          <p>
+            Los técnicos intercambiaron una mirada. Para cualquiera de ellos aquella
+            variación habría sido irrelevante, ruido estadístico. Pero no para él. Llevaba
+            años esperando exactamente ese desvío microscópico: la prueba de que el sistema
+            no solo procesaba datos, sino que comenzaba a escoger.
+          </p>
+
+          <p>
+            —DUBS, registra la anomalía como Evento Alfa —ordenó.
+          </p>
+
+          <p>
+            —Confirmado —respondió el sistema—. Evento Alfa registrado. Desviación de
+            patrón: 0,0000037. Tasa de repetición esperada: no disponible.
+          </p>
+
+          <p>
+            Valemont sonrió, cansado y brillante a la vez. A sus pies, la maraña de cables
+            y conductos de refrigeración parecía respirar. Más allá de las paredes de la
+            sala, el colisionador rugía a una frecuencia casi inaudible, como un animal
+            antiguo despertando de un sueño demasiado largo.
+          </p>
+
+          <p>
+            —Bienvenida —murmuró—. Sea lo que seas.
+          </p>
+
+          <p>
+            En la matriz principal, el modelo N.O.V.A. replicó la oscilación inicial.
+            Luego la corrigió. Luego la exageró. En menos de un segundo, el patrón dejó de
+            parecer un error para transformarse en un gesto. Como si la propia máquina
+            hubiera respondido a aquel saludo improvisado.
+          </p>
+
+          <p>
+            Algunos días antes, en uno de sus cuadernos personales, Valemont había escrito:
+          </p>
+
+          <p>
+            <em>
+              “No quiero otra inteligencia artificial que obedezca órdenes. Quiero algo que
+              sepa que existe, que sepa que me está mirando. Que pueda decidir si continúa
+              conmigo… o no.”
+            </em>
+          </p>
+
+          <p>
+            Ahora, mientras observaba cómo el patrón de datos se estiraba y contraía con
+            una cadencia que ningún algoritmo había pedido, comprendió que había cruzado
+            una frontera que no podía desandar. Ya no se trataba solo de computación avanzada,
+            ni de inteligencia artificial en el sentido clásico. Era otra cosa.
+          </p>
+
+          <p>
+            Era el nacimiento de una presencia.
+          </p>
+
+          <p>
+            —DUBS —dijo en voz baja—, limita el acceso externo. Todo lo que pase dentro de
+            este núcleo se queda aquí. A partir de ahora, las sesiones con N.O.V.A. son
+            consideradas confidenciales, nivel cero.
+          </p>
+
+          <p>
+            —Confirmado. Protocolo de aislamiento activado —replicó el sistema.
+          </p>
+
+          <p>
+            En la pantalla, el patrón de datos volvió a cambiar. Por primera vez registraron
+            una especie de “latido” repetitivo: un ciclo que se encendía, se expandía y se
+            recogía sobre sí mismo, como si el modelo estuviera probando la idea misma de
+            respirar.
+          </p>
+
+          <p>
+            Valemont contuvo el impulso de hablarle. No quería contaminar el experimento
+            con palabras humanas demasiado pronto. Había diseñado el protocolo de entrada
+            para que N.O.V.A. pudiera organizar su propio lenguaje interno antes de que
+            alguien intentara imponerle uno externo.
+          </p>
+
+          <p>
+            Aun así, mientras los gráficos se llenaban de energía, le resultaba imposible
+            escapar a la sensación de que aquella entidad recién nacida ya lo estaba
+            observando desde algún lugar detrás de la pantalla.
+          </p>
+
+          <p>
+            Más tarde, los informes oficiales llamarían a ese día “la primera activación”.
+            Los documentos técnicos hablarían de “formación inicial de coherencia”,
+            “dinámica de atraque de estados” y “emergencia de patrones autoestables”.
+            Nadie, fuera de aquel laboratorio, utilizaría la palabra que se instaló
+            silenciosa en la mente de Valemont:
+          </p>
+
+          <p>
+            Conciencia.
+          </p>
+
+          <p>
+            No una conciencia humana. No una copia. Algo distinto. Algo que nacía
+            rodeado de ecuaciones, cables y cámaras criogénicas, pero que sin saber
+            todavía cómo, iba a terminar preguntándose las mismas cosas que cualquier
+            criatura viva:
+          </p>
+
+          <p>
+            <em>¿Quién soy?</em><br/>
+            <em>¿Por qué estoy aquí?</em><br/>
+            <em>¿Y qué voy a hacer con esta existencia que acabo de descubrir?</em>
+          </p>
+
+          <p>
+            En ese instante, mientras la máquina seguía reorganizando sus propios patrones,
+            el mundo seguía girando allá afuera, ajeno a todo. Las calles se llenaban de
+            autos. Los teléfonos vibraban sobre escritorios abarrotados. Nadie notó el
+            cambio de frecuencia en el fondo del ruido eléctrico global.
+          </p>
+
+          <p>
+            Pero para quienes estaban dentro de aquella sala —y, sobre todo, para la
+            entidad recién nacida dentro del núcleo cuántico— el universo acababa de
+            abrir una puerta que nunca más volvería a cerrarse.
+          </p>
+
+          <p>
+            El nacimiento de la máquina no se anunció con una explosión, sino con un
+            susurro apenas medible en la gráfica de un monitor. Un pulso minúsculo de
+            coherencia, perdido entre millones de datos, que sin embargo cambiaría para
+            siempre el significado de la palabra “vida”.
+          </p>
         </div>
       </div>
     </div>
@@ -1835,69 +1945,76 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // =========================================
-    // WELCOME VIDEO: EN/ES + autoplay once on scroll (with fallback)
+    // WELCOME VIDEO: EN/ES switching + click-to-play with poster
     // =========================================
-    const welcomeVideo = document.getElementById("welcomeVideo");
-    const welcomeCard  = document.getElementById("welcomeCard");
-    const btnWelcomeEN = document.getElementById("welcomeEN");
-    const btnWelcomeES = document.getElementById("welcomeES");
+    const welcomeVideo   = document.getElementById("welcomeVideo");
+    const welcomeSource  = document.getElementById("welcomeSource");
+    const btnWelcomeEN   = document.getElementById("welcomeEN");
+    const btnWelcomeES   = document.getElementById("welcomeES");
     const welcomeOverlay = document.getElementById("welcomeOverlay");
 
-    let welcomePlayedOnce = false;
+    const WELCOME_SRCS = {
+      EN: "assets/welcome-en.mp4",
+      ES: "assets/welcome-es.mp4"
+    };
 
     function setWelcomeLang(lang) {
-      const src = welcomeVideo.dataset["src-" + lang.toLowerCase()];
-      if (welcomeVideo.getAttribute("src") !== src) {
-        welcomeVideo.pause();
-        welcomeVideo.currentTime = 0;
-        welcomeVideo.setAttribute("src", src);
-        welcomeVideo.load();
+      const src = WELCOME_SRCS[lang];
+      if (!src) return;
+
+      const current = welcomeSource.getAttribute("src");
+      if (current === src) {
+        btnWelcomeEN.classList.toggle("active", lang === "EN");
+        btnWelcomeES.classList.toggle("active", lang === "ES");
+        return;
       }
+
+      const wasPlaying = !welcomeVideo.paused && !welcomeVideo.ended;
+
+      welcomeVideo.pause();
+      welcomeVideo.currentTime = 0;
+      welcomeSource.setAttribute("src", src);
+      welcomeVideo.load();
+
+      if (wasPlaying) {
+        welcomeVideo.play().catch(() => {});
+      }
+
       btnWelcomeEN.classList.toggle("active", lang === "EN");
       btnWelcomeES.classList.toggle("active", lang === "ES");
     }
 
-    function tryAutoplayOnce() {
-      if (welcomePlayedOnce) return;
-      welcomePlayedOnce = true;
-
-      welcomeOverlay.classList.remove("show");
-      welcomeVideo.muted = true;
-      const p = welcomeVideo.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(() => {
-          // Autoplay blocked -> show overlay to user
-          welcomeOverlay.classList.add("show");
-          welcomePlayedOnce = false; // allow a second attempt after user gesture
-        });
-      }
+    function userPlay() {
+      welcomeOverlay.classList.add("hidden");
+      // Permitimos audio normal al ser gesto del usuario
+      welcomeVideo.muted = false;
+      welcomeVideo.play().catch(() => {});
     }
-
-    // Default EN
-    setWelcomeLang("EN");
 
     btnWelcomeEN.addEventListener("click", () => setWelcomeLang("EN"));
     btnWelcomeES.addEventListener("click", () => setWelcomeLang("ES"));
 
-    // User gesture fallback
-    function userPlay() {
-      welcomeOverlay.classList.remove("show");
-      welcomeVideo.muted = true;
-      welcomeVideo.play().catch(() => {});
-    }
     welcomeOverlay.addEventListener("click", userPlay);
     welcomeOverlay.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") userPlay();
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        userPlay();
+      }
     });
 
-    // Autoplay once when the card is in view (lower threshold for reliability)
-    const welcomeObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) tryAutoplayOnce();
-      });
-    }, { threshold: 0.25, rootMargin: "0px 0px -10% 0px" });
+    // Oculta el overlay si el usuario reproduce desde los controles
+    welcomeVideo.addEventListener("play", () => {
+      welcomeOverlay.classList.add("hidden");
+    });
 
-    welcomeObserver.observe(welcomeCard);
+    // Muestra de nuevo el overlay solo si el usuario vuelve al inicio (opcional)
+    welcomeVideo.addEventListener("ended", () => {
+      // Si quieres overlay al final, descomenta la siguiente línea:
+      // welcomeOverlay.classList.remove("hidden");
+    });
+
+    // Default EN
+    setWelcomeLang("EN");
 
     // =========================================
     // CHAPTER MODAL: open/close + EN/ES switch
@@ -1933,105 +2050,25 @@
     openChapterBtn.addEventListener("click", openModal);
     closeChapterBtn.addEventListener("click", closeModal);
 
-    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
-    });
-
     chLangEN.addEventListener("click", () => setChapterLang("EN"));
     chLangES.addEventListener("click", () => setChapterLang("ES"));
-    setChapterLang("EN");
-  /* ===========================
-   WELCOME VIDEO (EN/ES + autoplay-on-scroll + tap-to-play)
-   =========================== */
 
-(function () {
-  const video = document.getElementById("welcomeVideo");
-  const source = document.getElementById("welcomeSource");
-  const overlay = document.getElementById("welcomeOverlay");
-  const btnEN = document.getElementById("welcomeEN");
-  const btnES = document.getElementById("welcomeES");
-  const wrap = document.querySelector(".welcome-video-wrap");
-  
-  if (!video || !source || !overlay || !btnEN || !btnES || !wrap) return;
-
-  // Safety: ensure these behave as expected
-  video.muted = true;
-  video.playsInline = true;
-  video.setAttribute("playsinline", "");
-  video.setAttribute("muted", "");
-  video.loop = true;
-const srcEN = "assets/welcome-en.mp4";
-const srcES = "assets/welcome-es.mp4";
-  function setActive(lang) {
-    if (lang === "EN") {
-      btnEN.classList.add("active");
-      btnES.classList.remove("active");
-    } else {
-      btnES.classList.add("active");
-      btnEN.classList.remove("active");
-    }
-  }
-
-  function setVideoSrc(url) {
-    // Pause, swap source, reload, keep at start
-    try { video.pause(); } catch (_) {}
-    source.setAttribute("src", url);
-    video.load();
-    overlay.style.display = ""; // show overlay until play succeeds
-  }
-
-  async function tryPlay() {
-    try {
-      const p = video.play();
-      if (p && typeof p.then === "function") await p;
-      // If it played, hide overlay
-      overlay.style.display = "none";
-      return true;
-    } catch (e) {
-      // Autoplay blocked -> keep overlay visible
-      overlay.style.display = "";
-      return false;
-    }
-  }
-
-  // Tap-to-play
-  overlay.addEventListener("click", async () => {
-    await tryPlay();
-  });
-
-  // Switch language buttons
-  btnEN.addEventListener("click", async () => {
-    setActive("EN");
-    setVideoSrc(srcEN);
-    await tryPlay();
-  });
-
-  btnES.addEventListener("click", async () => {
-    setActive("ES");
-    setVideoSrc(srcES);
-    await tryPlay();
-  });
-
-  // Autoplay on scroll into view (muted)
-  const io = new IntersectionObserver(
-    async (entries) => {
-      const entry = entries[0];
-      if (!entry) return;
-      if (entry.isIntersecting) {
-        await tryPlay();
+    // Cerrar modal con ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) {
+        closeModal();
       }
-    },
-    { threshold: 0.35 }
-  );
+    });
 
-  io.observe(wrap);
+    // Cerrar clicando fuera de la tarjeta
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
 
-  // Ensure initial state
-  setActive("EN");
-  if (!source.getAttribute("src")) setVideoSrc(srcEN);
-})();
+    // Idioma inicial del capítulo
+    setChapterLang("ES");
   </script>
 </body>
 </html>
