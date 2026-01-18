@@ -2000,9 +2000,13 @@ const srcES = "assets/welcome-es.mp4";
   }
 
   // Tap-to-play
-  overlay.addEventListener("click", async () => {
-    await tryPlay();
-  });
+overlay.addEventListener("click", async () => {
+  try {
+    await video.play();
+  } catch (e) {
+    console.log("Manual play blocked:", e);
+  }
+});
 
   // Switch language buttons
   btnEN.addEventListener("click", async () => {
