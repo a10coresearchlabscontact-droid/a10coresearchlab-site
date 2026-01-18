@@ -1184,29 +1184,31 @@
             <span class="pill-mini">Lab · Pre-launch</span>
           </div>
 
-          <!-- WELCOME VIDEO -->
-          <div class="welcome-card" id="welcomeCard">
-            <div class="welcome-top">
-              <span>Welcome Message · EN / ES</span>
-              <div class="welcome-switch">
-                <button id="welcomeEN" class="active">EN</button>
-                <button id="welcomeES">ES</button>
-              </div>
-            
-            </div>
-        <div class="welcome-video-wrap">
+         <!-- WELCOME VIDEO -->
+<div class="welcome-card" id="welcomeCard">
+  <div class="welcome-top">
+    <span>Welcome Message · EN / ES</span>
+    <div class="welcome-switch">
+      <button id="welcomeEN" class="active" type="button">EN</button>
+      <button id="welcomeES" type="button">ES</button>
+    </div>
+  </div>
+
+  <div class="welcome-video-wrap">
     <div class="video-shell">
       <video
         id="welcomeVideo"
         class="welcome-video"
         playsinline
         muted
+        autoplay
+        loop
         preload="metadata"
       >
         <source id="welcomeSource" src="assets/welcome-en.mp4" type="video/mp4">
       </video>
 
-      <button id="welcomeOverlay" class="welcome-overlay" type="button" aria-label="Tap to play welcome video">
+      <button id="welcomeOverlay" class="welcome-overlay show" type="button" aria-label="Tap to play welcome video">
         <span class="overlay-btn">Tap to play</span>
       </button>
     </div>
@@ -1215,7 +1217,8 @@
       Autoplays once when you scroll here (muted). Controls remain available.
     </div>
   </div>
-          </div>
+</div>
+
 
           <div class="panel-grid">
             <div class="panel-main">
@@ -2031,6 +2034,10 @@ const srcES = "assets/welcome-es.mp4";
   // Ensure initial state
   setActive("EN");
   if (!source.getAttribute("src")) setVideoSrc(srcEN);
+  // Hide overlay once video starts playing
+video.addEventListener("play", () => {
+  overlay.classList.remove("show");
+});
 })();
   </script>
 </body>
