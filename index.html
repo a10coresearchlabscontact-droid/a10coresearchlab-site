@@ -80,7 +80,6 @@
       z-index: 1000;
       background: rgba(2, 7, 17, 0.88);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
     }
 
@@ -182,7 +181,6 @@
     h1 span {
       background: linear-gradient(90deg, #ffffff, #57efff, #198fff);
       -webkit-background-clip: text;
-      background-clip: text;
       color: transparent;
     }
 
@@ -233,36 +231,30 @@
 
     /* HERO VIDEO */
 
-    .hero-panel {
-      background:
-        linear-gradient(145deg, rgba(13, 34, 60, 0.9), rgba(3, 11, 22, 0.92));
+    .hero-video-panel {
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--line-strong);
       border-radius: 28px;
-      padding: 10px;
+      background: #01040a;
       box-shadow:
-        0 30px 80px rgba(0, 0, 0, .35),
-        0 0 60px rgba(23, 141, 255, .10),
-        inset 0 0 45px rgba(73, 232, 255, .035);
-      overflow: hidden;
-      position: relative;
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        0 0 55px rgba(73, 232, 255, 0.10);
     }
 
-    .hero-panel::after {
+    .hero-video-panel::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 28px;
       pointer-events: none;
-      box-shadow: inset 0 0 35px rgba(73, 232, 255, 0.06);
+      box-shadow: inset 0 0 40px rgba(73, 232, 255, 0.05);
     }
 
-    .hero-concept-video {
+    .hero-video {
       display: block;
       width: 100%;
       height: auto;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      border-radius: 20px;
       background: #000;
     }
 
@@ -647,10 +639,9 @@
         min-height: auto;
       }
 
-      .hero-panel {
-        max-width: 760px;
-        width: 100%;
-        margin: auto;
+      .hero-video-panel {
+        max-width: 700px;
+        margin: 0 auto;
       }
     }
 
@@ -677,19 +668,6 @@
 
       .hero {
         padding-top: 65px;
-      }
-
-      .hero-panel {
-        padding: 6px;
-        border-radius: 20px;
-      }
-
-      .hero-panel::after {
-        border-radius: 20px;
-      }
-
-      .hero-concept-video {
-        border-radius: 15px;
       }
     }
   </style>
@@ -720,8 +698,6 @@
 
 
   <main>
-
-    <!-- HERO -->
 
     <section class="hero" id="home">
 
@@ -768,23 +744,23 @@
         </div>
 
 
-        <!-- ATENCIA CONCEPT VIDEO -->
+        <!-- HERO VIDEO — REPLACES CORE RESEARCH VECTOR -->
 
-        <div class="hero-panel">
+        <div class="hero-video-panel">
 
           <video
-            class="hero-concept-video"
+            class="hero-video"
             autoplay
             muted
             loop
             playsinline
-            preload="metadata"
-            aria-label="AtencIA conceptual intelligent environment visualization"
+            preload="auto"
           >
             <source
               src="atencia-concept-video.MP4"
               type="video/mp4"
             >
+
             Your browser does not support HTML5 video.
           </video>
 
@@ -794,8 +770,6 @@
 
     </section>
 
-
-    <!-- ABOUT -->
 
     <section id="about">
 
@@ -864,8 +838,6 @@
 
     </section>
 
-
-    <!-- PILLARS -->
 
     <section id="pillars">
 
@@ -974,8 +946,6 @@
     </section>
 
 
-    <!-- FOCUS -->
-
     <section id="focus">
 
       <div class="wrap">
@@ -998,51 +968,70 @@
         <div class="focus-grid">
 
           <article class="focus-card">
-            <h3>Contextual Intelligence</h3>
+
+            <h3>
+              Contextual Intelligence
+            </h3>
 
             <p>
               Architectures capable of understanding user context,
               preferences, relationships, history and intent across
               interactions.
             </p>
+
           </article>
 
 
           <article class="focus-card">
-            <h3>Technology Abstraction & Interoperability</h3>
+
+            <h3>
+              Technology Abstraction & Interoperability
+            </h3>
 
             <p>
               Research into modular layers that allow intelligent
               systems to communicate with heterogeneous devices,
               services and native technological platforms.
             </p>
+
           </article>
 
 
           <article class="focus-card">
-            <h3>Human–AI Continuity</h3>
+
+            <h3>
+              Human–AI Continuity
+            </h3>
 
             <p>
               Persistent intelligent systems designed around
               continuity of relationship rather than dependence on a
               single device, avatar or physical embodiment.
             </p>
+
           </article>
 
 
           <article class="focus-card">
-            <h3>Intelligent Environments</h3>
+
+            <h3>
+              Intelligent Environments
+            </h3>
 
             <p>
               Exploration of how contextual intelligence may operate
               across homes, mobility, wearables, digital platforms
               and future technological environments.
             </p>
+
           </article>
 
 
           <article class="focus-card">
-            <h3>Ethics, Foresight & Governance</h3>
+
+            <h3>
+              Ethics, Foresight & Governance
+            </h3>
 
             <p>
               Examination of ethical, social and governance questions
@@ -1050,17 +1039,22 @@
               technological identity and long-term human–AI
               interaction.
             </p>
+
           </article>
 
 
           <article class="focus-card">
-            <h3>Applied Prototyping</h3>
+
+            <h3>
+              Applied Prototyping
+            </h3>
 
             <p>
               Translation of selected architectural concepts into
               functional software prototypes, interfaces and
               technology demonstrations.
             </p>
+
           </article>
 
         </div>
@@ -1069,8 +1063,6 @@
 
     </section>
 
-
-    <!-- ATENCIA -->
 
     <section class="atencia" id="atencia">
 
@@ -1143,8 +1135,6 @@
     </section>
 
 
-    <!-- NOVAVERSE -->
-
     <section id="novaverse">
 
       <div class="wrap">
@@ -1201,8 +1191,6 @@
 
     </section>
 
-
-    <!-- FOUNDER -->
 
     <section id="founder">
 
@@ -1277,8 +1265,6 @@
 
     </section>
 
-
-    <!-- CONTACT -->
 
     <section id="contact">
 
