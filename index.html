@@ -72,9 +72,7 @@
       margin: auto;
     }
 
-    /* =========================
-       HEADER
-       ========================= */
+    /* HEADER */
 
     header {
       position: sticky;
@@ -134,9 +132,7 @@
       color: var(--cyan);
     }
 
-    /* =========================
-       HERO
-       ========================= */
+    /* HERO */
 
     .hero {
       min-height: calc(100vh - 78px);
@@ -218,6 +214,8 @@
       letter-spacing: 0.11em;
       text-transform: uppercase;
       transition: 0.25s ease;
+      background: transparent;
+      color: white;
     }
 
     .btn.primary {
@@ -307,9 +305,7 @@
       font-size: 12px;
     }
 
-    /* =========================
-       GENERAL SECTIONS
-       ========================= */
+    /* GENERAL */
 
     section {
       padding: 100px 0;
@@ -329,9 +325,7 @@
       font-size: 17px;
     }
 
-    /* =========================
-       ABOUT
-       ========================= */
+    /* ABOUT */
 
     .about-grid {
       display: grid;
@@ -378,9 +372,7 @@
       border-bottom: 0;
     }
 
-    /* =========================
-       PILLARS / FOCUS
-       ========================= */
+    /* PILLARS / FOCUS */
 
     .cards {
       display: grid;
@@ -443,9 +435,7 @@
       color: var(--muted);
     }
 
-    /* =========================
-       ATENCIA
-       ========================= */
+    /* ATENCIA */
 
     .atencia {
       overflow: hidden;
@@ -489,9 +479,7 @@
       line-height: 1.9;
     }
 
-    /* =========================
-       NOVAVERSE
-       ========================= */
+    /* NOVAVERSE */
 
     .novaverse-banner {
       margin-top: 42px;
@@ -518,9 +506,7 @@
       color: var(--muted);
     }
 
-    /* =========================
-       FOUNDER
-       ========================= */
+    /* FOUNDER */
 
     .founder-grid {
       display: grid;
@@ -583,9 +569,7 @@
       box-shadow: 0 0 14px rgba(166,206,57,.55);
     }
 
-    /* =========================
-       CONTACT
-       ========================= */
+    /* CONTACT */
 
     .contact-box {
       display: grid;
@@ -662,9 +646,7 @@
       color: var(--cyan);
     }
 
-    /* =========================
-       FOOTER
-       ========================= */
+    /* FOOTER */
 
     footer {
       padding: 45px 0;
@@ -684,9 +666,7 @@
       color: #d9e8f2;
     }
 
-    /* =========================
-       RESPONSIVE
-       ========================= */
+    /* RESPONSIVE */
 
     @media (max-width: 950px) {
       .hero-grid,
@@ -744,12 +724,7 @@
   </style>
 </head>
 
-
 <body>
-
-  <!-- ========================================
-       HEADER
-       ======================================== -->
 
   <header>
     <div class="wrap nav">
@@ -774,10 +749,6 @@
 
 
   <main>
-
-    <!-- ========================================
-         HERO
-         ======================================== -->
 
     <section class="hero" id="home">
 
@@ -806,6 +777,7 @@
           </p>
 
           <div class="hero-actions">
+
             <a class="btn primary" href="#atencia">
               Explore AtencIA
             </a>
@@ -817,6 +789,7 @@
             <a class="btn" href="#contact">
               Collaborate
             </a>
+
           </div>
 
         </div>
@@ -860,10 +833,6 @@
 
     </section>
 
-
-    <!-- ========================================
-         ABOUT
-         ======================================== -->
 
     <section id="about">
 
@@ -932,10 +901,6 @@
 
     </section>
 
-
-    <!-- ========================================
-         RESEARCH PILLARS
-         ======================================== -->
 
     <section id="pillars">
 
@@ -1043,10 +1008,6 @@
 
     </section>
 
-
-    <!-- ========================================
-         FOCUS AREAS
-         ======================================== -->
 
     <section id="focus">
 
@@ -1166,10 +1127,6 @@
     </section>
 
 
-    <!-- ========================================
-         ATENCIA
-         ======================================== -->
-
     <section class="atencia" id="atencia">
 
       <div class="wrap atencia-grid">
@@ -1177,7 +1134,7 @@
         <div class="atencia-logo-wrap">
 
           <img
-            src="assets/atencia-logo.png"
+            src="atencia-logo.PNG"
             alt="AtencIA — Atencio Intelligent Architecture"
           >
 
@@ -1241,10 +1198,6 @@
     </section>
 
 
-    <!-- ========================================
-         NOVAVERSE
-         ======================================== -->
-
     <section id="novaverse">
 
       <div class="wrap">
@@ -1270,7 +1223,7 @@
         <div class="novaverse-banner">
 
           <img
-            src="assets/novaverse-saga-banner.png"
+            src="novaverse-saga-banner.PNG"
             alt="NovaVerse Saga — Science Fiction Universe"
           >
 
@@ -1302,10 +1255,6 @@
     </section>
 
 
-    <!-- ========================================
-         FOUNDER
-         ======================================== -->
-
     <section id="founder">
 
       <div class="wrap">
@@ -1324,7 +1273,7 @@
           <div class="founder-photo">
 
             <img
-              src="assets/william-atencio-founder.png"
+              src="william-atencio-founder.png"
               alt="Dr. William J. Atencio González — Founder and Research Director"
             >
 
@@ -1380,10 +1329,6 @@
     </section>
 
 
-    <!-- ========================================
-         CONTACT & COLLABORATION
-         ======================================== -->
-
     <section id="contact">
 
       <div class="wrap">
@@ -1408,8 +1353,6 @@
 
         <div class="contact-box">
 
-          <!-- CONTACT FORM -->
-
           <div class="contact-card">
 
             <strong>
@@ -1423,7 +1366,7 @@
 
 
             <form
-              action="mailto:a10co.researchlabs.contact@gmail.com"
+              action="mailto:a10c.o.researchlabs.contact@gmail.com"
               method="post"
               enctype="text/plain"
             >
@@ -1479,8 +1422,6 @@
 
           </div>
 
-
-          <!-- OFFICIAL INFORMATION -->
 
           <div class="contact-card">
 
@@ -1544,8 +1485,8 @@
                 </strong>
 
                 <p>
-                  <a href="mailto:a10co.researchlabs.contact@gmail.com">
-                    a10co.researchlabs.contact@gmail.com
+                  <a href="mailto:a10c.o.researchlabs.contact@gmail.com">
+                    a10c.o.researchlabs.contact@gmail.com
                   </a>
                 </p>
 
@@ -1606,10 +1547,6 @@
 
   </main>
 
-
-  <!-- ========================================
-       FOOTER
-       ======================================== -->
 
   <footer>
 
