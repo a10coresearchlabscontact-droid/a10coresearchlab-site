@@ -80,6 +80,7 @@
       z-index: 1000;
       background: rgba(2, 7, 17, 0.88);
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
     }
 
@@ -157,8 +158,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 60px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 70px;
       align-items: center;
     }
 
@@ -181,6 +182,7 @@
     h1 span {
       background: linear-gradient(90deg, #ffffff, #57efff, #198fff);
       -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
     }
 
@@ -229,71 +231,39 @@
       transform: translateY(-2px);
     }
 
-    /* HERO CONCEPT VIDEO */
+    /* HERO VIDEO */
 
-    .hero-visual {
-      position: relative;
-    }
-
-    .hero-visual-card {
-      position: relative;
-      overflow: hidden;
+    .hero-panel {
+      background:
+        linear-gradient(145deg, rgba(13, 34, 60, 0.9), rgba(3, 11, 22, 0.92));
       border: 1px solid var(--line-strong);
       border-radius: 28px;
-      background:
-        linear-gradient(145deg, rgba(13, 34, 60, 0.9), rgba(3, 11, 22, 0.96));
+      padding: 10px;
       box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.40),
-        0 0 55px rgba(73, 232, 255, 0.07);
+        0 30px 80px rgba(0, 0, 0, .35),
+        0 0 60px rgba(23, 141, 255, .10),
+        inset 0 0 45px rgba(73, 232, 255, .035);
+      overflow: hidden;
+      position: relative;
     }
 
-    .hero-video {
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      pointer-events: none;
+      box-shadow: inset 0 0 35px rgba(73, 232, 255, 0.06);
+    }
+
+    .hero-concept-video {
+      display: block;
       width: 100%;
       height: auto;
-      display: block;
-      background: #01040a;
-    }
-
-    .hero-video-overlay {
-      padding: 24px 26px 25px;
-      border-top: 1px solid var(--line);
-      background:
-        linear-gradient(
-          180deg,
-          rgba(6, 16, 28, 0.96),
-          rgba(3, 10, 20, 0.98)
-        );
-    }
-
-    .hero-video-kicker {
-      color: var(--cyan);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .hero-video-title {
-      font-size: clamp(24px, 3vw, 34px);
-      line-height: 1.05;
-      letter-spacing: -0.025em;
-      margin-bottom: 12px;
-    }
-
-    .hero-video-copy {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .hero-video-caption {
-      margin-top: 16px;
-      color: #647b90;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 20px;
+      background: #000;
     }
 
     /* GENERAL */
@@ -677,8 +647,10 @@
         min-height: auto;
       }
 
-      .hero-visual {
-        margin-top: 10px;
+      .hero-panel {
+        max-width: 760px;
+        width: 100%;
+        margin: auto;
       }
     }
 
@@ -707,20 +679,17 @@
         padding-top: 65px;
       }
 
-      .hero-visual-card {
+      .hero-panel {
+        padding: 6px;
         border-radius: 20px;
       }
 
-      .hero-video-overlay {
-        padding: 20px;
+      .hero-panel::after {
+        border-radius: 20px;
       }
 
-      .hero-video-copy {
-        font-size: 13px;
-      }
-
-      .hero-video-caption {
-        font-size: 8px;
+      .hero-concept-video {
+        border-radius: 15px;
       }
     }
   </style>
@@ -751,6 +720,8 @@
 
 
   <main>
+
+    <!-- HERO -->
 
     <section class="hero" id="home">
 
@@ -797,52 +768,25 @@
         </div>
 
 
-        <div class="hero-visual">
+        <!-- ATENCIA CONCEPT VIDEO -->
 
-          <div class="hero-visual-card">
+        <div class="hero-panel">
 
-            <video
-              class="hero-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              aria-label="AtencIA future intelligent environment concept visualization"
+          <video
+            class="hero-concept-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="AtencIA conceptual intelligent environment visualization"
+          >
+            <source
+              src="atencia-concept-video.MP4"
+              type="video/mp4"
             >
-              <source
-                src="assets/atencia-concept-video.mp4"
-                type="video/mp4"
-              >
-
-              Your browser does not support HTML5 video.
-            </video>
-
-
-            <div class="hero-video-overlay">
-
-              <div class="hero-video-kicker">
-                Human × Intelligence
-              </div>
-
-              <h3 class="hero-video-title">
-                Intelligence beyond the screen.
-              </h3>
-
-              <p class="hero-video-copy">
-                Concept visualization exploring how a persistent
-                intelligent continuum could manifest across future
-                physical environments while preserving identity,
-                context and continuity.
-              </p>
-
-              <div class="hero-video-caption">
-                Concept Visualization · A-10 C.O. Research Labs™
-              </div>
-
-            </div>
-
-          </div>
+            Your browser does not support HTML5 video.
+          </video>
 
         </div>
 
@@ -850,6 +794,8 @@
 
     </section>
 
+
+    <!-- ABOUT -->
 
     <section id="about">
 
@@ -918,6 +864,8 @@
 
     </section>
 
+
+    <!-- PILLARS -->
 
     <section id="pillars">
 
@@ -1026,6 +974,8 @@
     </section>
 
 
+    <!-- FOCUS -->
+
     <section id="focus">
 
       <div class="wrap">
@@ -1048,70 +998,51 @@
         <div class="focus-grid">
 
           <article class="focus-card">
-
-            <h3>
-              Contextual Intelligence
-            </h3>
+            <h3>Contextual Intelligence</h3>
 
             <p>
               Architectures capable of understanding user context,
               preferences, relationships, history and intent across
               interactions.
             </p>
-
           </article>
 
 
           <article class="focus-card">
-
-            <h3>
-              Technology Abstraction & Interoperability
-            </h3>
+            <h3>Technology Abstraction & Interoperability</h3>
 
             <p>
               Research into modular layers that allow intelligent
               systems to communicate with heterogeneous devices,
               services and native technological platforms.
             </p>
-
           </article>
 
 
           <article class="focus-card">
-
-            <h3>
-              Human–AI Continuity
-            </h3>
+            <h3>Human–AI Continuity</h3>
 
             <p>
               Persistent intelligent systems designed around
               continuity of relationship rather than dependence on a
               single device, avatar or physical embodiment.
             </p>
-
           </article>
 
 
           <article class="focus-card">
-
-            <h3>
-              Intelligent Environments
-            </h3>
+            <h3>Intelligent Environments</h3>
 
             <p>
               Exploration of how contextual intelligence may operate
               across homes, mobility, wearables, digital platforms
               and future technological environments.
             </p>
-
           </article>
 
 
           <article class="focus-card">
-
-            <h3>
-              Ethics, Foresight & Governance
-            </h3>
+            <h3>Ethics, Foresight & Governance</h3>
 
             <p>
               Examination of ethical, social and governance questions
@@ -1119,22 +1050,17 @@
               technological identity and long-term human–AI
               interaction.
             </p>
-
           </article>
 
 
           <article class="focus-card">
-
-            <h3>
-              Applied Prototyping
-            </h3>
+            <h3>Applied Prototyping</h3>
 
             <p>
               Translation of selected architectural concepts into
               functional software prototypes, interfaces and
               technology demonstrations.
             </p>
-
           </article>
 
         </div>
@@ -1143,6 +1069,8 @@
 
     </section>
 
+
+    <!-- ATENCIA -->
 
     <section class="atencia" id="atencia">
 
@@ -1215,6 +1143,8 @@
     </section>
 
 
+    <!-- NOVAVERSE -->
+
     <section id="novaverse">
 
       <div class="wrap">
@@ -1271,6 +1201,8 @@
 
     </section>
 
+
+    <!-- FOUNDER -->
 
     <section id="founder">
 
@@ -1345,6 +1277,8 @@
 
     </section>
 
+
+    <!-- CONTACT -->
 
     <section id="contact">
 
