@@ -157,8 +157,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 70px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
       align-items: center;
     }
 
@@ -229,80 +229,71 @@
       transform: translateY(-2px);
     }
 
-    .hero-panel {
-      background:
-        linear-gradient(145deg, rgba(13, 34, 60, 0.9), rgba(3, 11, 22, 0.92));
+    /* HERO CONCEPT VIDEO */
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-visual-card {
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--line-strong);
       border-radius: 28px;
-      padding: 34px;
+      background:
+        linear-gradient(145deg, rgba(13, 34, 60, 0.9), rgba(3, 11, 22, 0.96));
       box-shadow:
-        0 30px 80px rgba(0,0,0,.35),
-        inset 0 0 45px rgba(73,232,255,.035);
+        0 30px 80px rgba(0, 0, 0, 0.40),
+        0 0 55px rgba(73, 232, 255, 0.07);
     }
 
-    .hero-panel h3 {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
+    .hero-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #01040a;
+    }
+
+    .hero-video-overlay {
+      padding: 24px 26px 25px;
+      border-top: 1px solid var(--line);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(6, 16, 28, 0.96),
+          rgba(3, 10, 20, 0.98)
+        );
+    }
+
+    .hero-video-kicker {
       color: var(--cyan);
-      margin-bottom: 18px;
-    }
-
-    .core-ring {
-      width: 210px;
-      height: 210px;
-      border-radius: 50%;
-      border: 1px solid rgba(73, 232, 255, .4);
-      margin: 20px auto 30px;
-      display: grid;
-      place-items: center;
-      position: relative;
-      box-shadow:
-        0 0 50px rgba(32, 194, 255, .12),
-        inset 0 0 50px rgba(32, 194, 255, .08);
-    }
-
-    .core-ring::before,
-    .core-ring::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(73,232,255,.18);
-    }
-
-    .core-ring::before {
-      width: 160px;
-      height: 160px;
-    }
-
-    .core-ring::after {
-      width: 115px;
-      height: 115px;
-    }
-
-    .core-ring span {
-      position: relative;
-      z-index: 2;
-      color: white;
-      text-align: center;
+      font-size: 10px;
       font-weight: 800;
-      font-size: 13px;
-      letter-spacing: .12em;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
-    .mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .hero-video-title {
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
     }
 
-    .mini {
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,.15);
-      border-radius: 12px;
-      padding: 13px;
-      color: #b8cad8;
-      font-size: 12px;
+    .hero-video-copy {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .hero-video-caption {
+      margin-top: 16px;
+      color: #647b90;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
     /* GENERAL */
@@ -685,6 +676,10 @@
       .hero {
         min-height: auto;
       }
+
+      .hero-visual {
+        margin-top: 10px;
+      }
     }
 
     @media (max-width: 700px) {
@@ -712,13 +707,20 @@
         padding-top: 65px;
       }
 
-      .hero-panel {
-        padding: 22px;
+      .hero-visual-card {
+        border-radius: 20px;
       }
 
-      .core-ring {
-        width: 180px;
-        height: 180px;
+      .hero-video-overlay {
+        padding: 20px;
+      }
+
+      .hero-video-copy {
+        font-size: 13px;
+      }
+
+      .hero-video-caption {
+        font-size: 8px;
       }
     }
   </style>
@@ -795,34 +797,49 @@
         </div>
 
 
-        <div class="hero-panel">
+        <div class="hero-visual">
 
-          <h3>Core Research Vector</h3>
+          <div class="hero-visual-card">
 
-          <div class="core-ring">
-            <span>
-              HUMAN<br>
-              ×<br>
-              INTELLIGENCE
-            </span>
-          </div>
+            <video
+              class="hero-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="AtencIA future intelligent environment concept visualization"
+            >
+              <source
+                src="assets/atencia-concept-video.mp4"
+                type="video/mp4"
+              >
 
-          <div class="mini-grid">
+              Your browser does not support HTML5 video.
+            </video>
 
-            <div class="mini">
-              Contextual Intelligence
-            </div>
 
-            <div class="mini">
-              Human–AI Symbiosis
-            </div>
+            <div class="hero-video-overlay">
 
-            <div class="mini">
-              Technology Interoperability
-            </div>
+              <div class="hero-video-kicker">
+                Human × Intelligence
+              </div>
 
-            <div class="mini">
-              Digital Continuity
+              <h3 class="hero-video-title">
+                Intelligence beyond the screen.
+              </h3>
+
+              <p class="hero-video-copy">
+                Concept visualization exploring how a persistent
+                intelligent continuum could manifest across future
+                physical environments while preserving identity,
+                context and continuity.
+              </p>
+
+              <div class="hero-video-caption">
+                Concept Visualization · A-10 C.O. Research Labs™
+              </div>
+
             </div>
 
           </div>
