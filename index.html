@@ -1,505 +1,477 @@
-<!-- =========================================================
-     A-10 C.O. RESEARCH LABS — ENTRY GATE + INTRO
-     Reemplaza SOLO tu bloque actual de entrada/intro por este.
-     ========================================================= -->
-
-<style>
-  /* ===== ENTRY / INTRO OVERLAY ===== */
-
-  #a10-entry-overlay,
-  #a10-intro-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 99999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background:
-      radial-gradient(
-        circle at center,
-        rgba(0, 84, 130, 0.17) 0%,
-        rgba(3, 17, 30, 0.96) 44%,
-        #01060c 100%
-      );
-  }
-
-  #a10-entry-overlay::before,
-  #a10-intro-overlay::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.35;
-    background-image:
-      radial-gradient(circle at 10% 13%, rgba(52, 220, 255, 0.8) 0 1px, transparent 1.7px),
-      radial-gradient(circle at 43% 31%, rgba(52, 220, 255, 0.6) 0 1px, transparent 1.7px),
-      radial-gradient(circle at 68% 18%, rgba(52, 220, 255, 0.45) 0 1px, transparent 1.7px),
-      radial-gradient(circle at 24% 67%, rgba(52, 220, 255, 0.55) 0 1px, transparent 1.7px),
-      radial-gradient(circle at 74% 70%, rgba(52, 220, 255, 0.45) 0 1px, transparent 1.7px),
-      radial-gradient(circle at 50% 85%, rgba(52, 220, 255, 0.38) 0 1px, transparent 1.7px);
-  }
-
-  #a10-entry-overlay.is-hidden,
-  #a10-intro-overlay.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  #a10-entry-overlay {
-    transition:
-      opacity 0.45s ease,
-      visibility 0.45s ease;
-  }
-
-  #a10-intro-overlay {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition:
-      opacity 0.5s ease,
-      visibility 0.5s ease;
-  }
-
-  #a10-intro-overlay.is-active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  /* ===== ENTER BUTTON ===== */
-
-  #a10-enter-button {
-    position: relative;
-    z-index: 2;
-    min-width: 360px;
-    padding: 18px 34px;
-    border-radius: 999px;
-    border: 1.5px solid rgba(62, 222, 255, 0.72);
-
-    background:
-      linear-gradient(
-        180deg,
-        rgba(5, 21, 35, 0.90),
-        rgba(3, 12, 24, 0.92)
-      );
-
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 2.8px;
-    text-transform: uppercase;
-
-    cursor: pointer;
-
-    box-shadow:
-      0 0 10px rgba(31, 199, 255, 0.18),
-      inset 0 0 18px rgba(31, 199, 255, 0.03);
-
-    transition:
-      transform 0.28s ease,
-      border-color 0.28s ease,
-      box-shadow 0.28s ease,
-      background 0.28s ease;
-  }
-
-  #a10-enter-button::before {
-    content: "";
-    position: absolute;
-    inset: -20px;
-    border-radius: 999px;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(0, 213, 255, 0.16),
-      transparent 68%
-    );
-    opacity: 0;
-    filter: blur(12px);
-    transition: opacity 0.28s ease;
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  #a10-enter-button:hover,
-  #a10-enter-button:focus-visible {
-    transform: scale(1.035);
-    border-color: rgba(118, 242, 255, 1);
-
-    background:
-      linear-gradient(
-        180deg,
-        rgba(7, 28, 47, 0.96),
-        rgba(3, 15, 29, 0.96)
-      );
-
-    box-shadow:
-      0 0 12px rgba(54, 225, 255, 0.55),
-      0 0 34px rgba(54, 225, 255, 0.28),
-      0 0 70px rgba(54, 225, 255, 0.14);
-  }
-
-  #a10-enter-button:hover::before,
-  #a10-enter-button:focus-visible::before {
-    opacity: 1;
-  }
-
-  /* ===== INTRO VIDEO ===== */
-
-  #a10-intro-shell {
-    position: relative;
-    z-index: 2;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    height: 100%;
-  }
-
-  #a10-intro-video {
-    display: block;
-
-    width: 30vw;
-    max-width: 620px;
-    min-width: 420px;
-
-    height: auto;
-    max-height: 62vh;
-
-    object-fit: contain;
-
-    background: transparent;
-
-    box-shadow: none;
-    border: 0;
-    outline: 0;
-  }
-
-  /* No controles visibles */
-  #a10-intro-video::-webkit-media-controls {
-    display: none !important;
-  }
-
-  /* ===== MOBILE ===== */
-
-  @media (max-width: 768px) {
-    #a10-enter-button {
-      width: calc(100vw - 48px);
-      min-width: 0;
-
-      padding: 20px 22px;
-
-      font-size: 11px;
-      letter-spacing: 2px;
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#02060c" />
+  <title>A-10 C.O. Research Labs™</title>
+  <style>
+    :root{
+      --bg:#02060c;
+      --bg2:#071425;
+      --panel:rgba(7,17,30,.74);
+      --line:rgba(96,226,255,.28);
+      --cyan:#59e7ff;
+      --cyan2:#00b9ff;
+      --text:#f5f9ff;
+      --muted:#aab7c7;
+      --max:1180px;
     }
 
-    #a10-intro-video {
-      width: 84vw;
-      max-width: none;
-      min-width: 0;
-      max-height: 55vh;
-    }
-  }
-
-  @media (max-width: 430px) {
-    #a10-enter-button {
-      width: calc(100vw - 42px);
-      font-size: 10px;
-      letter-spacing: 1.7px;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%,rgba(15,112,180,.22),transparent 40%),
+        linear-gradient(180deg,#02060c 0%,#06101d 45%,#02060c 100%);
+      overflow-x:hidden;
     }
 
-    #a10-intro-video {
-      width: 88vw;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-4;
+      opacity:.58;
+      background-image:
+        radial-gradient(circle at 8% 14%,rgba(100,230,255,.55) 0 1px,transparent 1.5px),
+        radial-gradient(circle at 22% 51%,rgba(100,230,255,.34) 0 1px,transparent 1.5px),
+        radial-gradient(circle at 39% 19%,rgba(100,230,255,.28) 0 1px,transparent 1.5px),
+        radial-gradient(circle at 63% 41%,rgba(100,230,255,.34) 0 1px,transparent 1.5px),
+        radial-gradient(circle at 81% 18%,rgba(100,230,255,.45) 0 1px,transparent 1.5px),
+        radial-gradient(circle at 92% 67%,rgba(100,230,255,.28) 0 1px,transparent 1.5px);
+      background-size:100% 100%;
     }
-  }
-</style>
 
+    a{color:inherit;text-decoration:none}
+    img,video{max-width:100%;display:block}
+    button{font:inherit}
 
-<!-- ENTRY SCREEN -->
-<div id="a10-entry-overlay">
-  <button
-    id="a10-enter-button"
-    type="button"
-    aria-label="Enter A-10 C.O. Research Labs"
-  >
-    ENTER A-10 C.O. RESEARCH LABS
-  </button>
-</div>
+    /* ENTRY */
+    #entry{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 50% 50%,rgba(0,133,190,.18),transparent 34%),
+        #01050a;
+      transition:opacity .7s ease,visibility .7s ease;
+    }
+    #entry.hidden{opacity:0;visibility:hidden;pointer-events:none}
 
+    .entry-wrap{text-align:center;padding:24px;width:min(92vw,720px)}
+    .entry-mark{
+      width:min(46vw,270px);
+      margin:0 auto 34px;
+      opacity:.95;
+      filter:drop-shadow(0 0 28px rgba(40,190,255,.25));
+      animation:float 5s ease-in-out infinite;
+    }
+    .entry-mark img{width:100%;border-radius:18px}
+    .entry-fallback{
+      display:none;
+      font-size:clamp(36px,7vw,70px);
+      font-weight:900;
+      letter-spacing:.08em;
+      color:#eef7ff;
+      text-shadow:0 0 24px rgba(75,211,255,.35);
+      margin-bottom:34px;
+    }
+    @keyframes float{50%{transform:translateY(-7px)}}
 
-<!-- INTRO VIDEO SCREEN -->
-<div
-  id="a10-intro-overlay"
-  class="is-hidden"
-  aria-hidden="true"
->
-  <div id="a10-intro-shell">
+    #enterBtn{
+      border:1px solid rgba(89,231,255,.72);
+      color:white;
+      padding:16px 28px;
+      border-radius:999px;
+      background:rgba(2,10,20,.82);
+      letter-spacing:.19em;
+      font-size:12px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 0 0 rgba(89,231,255,0);
+      transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease,background .25s ease;
+    }
+    #enterBtn:hover,#enterBtn:focus-visible{
+      transform:scale(1.035);
+      border-color:#8af2ff;
+      background:rgba(6,23,39,.92);
+      box-shadow:0 0 18px rgba(89,231,255,.45),0 0 55px rgba(0,185,255,.18);
+      outline:none;
+    }
+    .entry-note{margin-top:16px;color:#728399;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
 
-    <video
-      id="a10-intro-video"
-      playsinline
-      webkit-playsinline
-      preload="auto"
-      muted
-      disablepictureinpicture
-    >
-      <source
-        src="a10co-research-labs-intro.mp4"
-        type="video/mp4"
-      >
-    </video>
+    /* FLOATING STRIP */
+    .visual-strip{
+      position:fixed;
+      left:0;
+      top:0;
+      bottom:0;
+      width:min(23vw,310px);
+      z-index:3;
+      pointer-events:none;
+      opacity:.34;
+      background-image:url('assets/a10-floating-visual-strip.png');
+      background-repeat:repeat-y;
+      background-size:100% auto;
+      background-position:left top;
+      filter:saturate(1.05) contrast(1.05);
+      -webkit-mask-image:linear-gradient(to right,#000 0%,#000 44%,rgba(0,0,0,.55) 72%,transparent 100%);
+      mask-image:linear-gradient(to right,#000 0%,#000 44%,rgba(0,0,0,.55) 72%,transparent 100%);
+    }
 
+    /* NAV */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      background:rgba(2,6,12,.76);
+      border-bottom:1px solid rgba(111,224,255,.16);
+    }
+    .nav-inner{
+      width:min(calc(100% - 36px),var(--max));
+      margin:auto;
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:22px;
+    }
+    .brand{display:flex;flex-direction:column;line-height:1.05}
+    .brand strong{font-size:14px;letter-spacing:.08em}
+    .brand span{font-size:9px;color:var(--cyan);letter-spacing:.16em;margin-top:5px}
+    .nav-links{display:flex;gap:22px;align-items:center;font-size:11px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:#d9e3ef}
+    .nav-links a:hover{color:var(--cyan)}
+
+    /* CONTENT */
+    main{position:relative;z-index:5}
+    .container{width:min(calc(100% - 40px),var(--max));margin:auto}
+    .section{padding:108px 0}
+    .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:800}
+    h1,h2,h3,p{margin-top:0}
+    h1{
+      font-size:clamp(48px,7.4vw,96px);
+      line-height:.94;
+      letter-spacing:-.055em;
+      max-width:880px;
+      margin-bottom:24px;
+    }
+    h2{font-size:clamp(32px,4.6vw,58px);line-height:1;letter-spacing:-.04em;margin-bottom:24px}
+    h3{font-size:20px;margin-bottom:12px}
+    p{color:var(--muted);line-height:1.72}
+    .accent{color:var(--cyan)}
+
+    .hero{min-height:calc(100vh - 72px);display:flex;align-items:center;padding:70px 0 90px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:58px;align-items:center}
+    .hero-copy p{max-width:690px;font-size:17px}
+    .hero-card{
+      position:relative;
+      border:1px solid rgba(89,231,255,.32);
+      border-radius:28px;
+      overflow:hidden;
+      background:linear-gradient(145deg,rgba(4,15,28,.96),rgba(5,26,48,.75));
+      box-shadow:0 30px 80px rgba(0,0,0,.36),inset 0 0 50px rgba(39,180,255,.04);
+      min-height:430px;
+      display:grid;
+      place-items:center;
+    }
+    .hero-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,185,255,.2),transparent 47%)}
+    .hero-logo{width:70%;position:relative;z-index:2;filter:drop-shadow(0 0 24px rgba(0,185,255,.18))}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{
+      background:linear-gradient(180deg,rgba(9,22,39,.86),rgba(5,13,24,.72));
+      border:1px solid rgba(118,226,255,.16);
+      border-radius:20px;
+      padding:28px;
+      min-height:230px;
+    }
+    .card-number{font-size:11px;color:var(--cyan);letter-spacing:.2em;margin-bottom:40px}
+
+    .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+    .video-frame{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(89,231,255,.25);
+      background:#000;
+      box-shadow:0 24px 70px rgba(0,0,0,.35);
+    }
+    .video-frame video{width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+
+    .banner{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(89,231,255,.18);
+      background:rgba(5,15,26,.8);
+      position:relative;
+    }
+    .banner img{width:100%;height:100%;object-fit:cover}
+    .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,6,12,.72),transparent 44%)}
+
+    .founder{display:grid;grid-template-columns:.78fr 1.22fr;gap:42px;align-items:center}
+    .founder-photo{border-radius:24px;overflow:hidden;border:1px solid rgba(89,231,255,.2);background:#081421;max-height:620px}
+    .founder-photo img{width:100%;height:100%;object-fit:cover}
+
+    .contact-box{
+      padding:52px;
+      border-radius:28px;
+      background:linear-gradient(135deg,rgba(8,28,48,.84),rgba(3,11,20,.92));
+      border:1px solid rgba(89,231,255,.24);
+      text-align:center;
+    }
+
+    .sound-btn{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:90;
+      border:1px solid rgba(89,231,255,.55);
+      background:rgba(2,9,17,.86);
+      color:#eaf9ff;
+      border-radius:999px;
+      padding:11px 15px;
+      font-size:10px;
+      letter-spacing:.13em;
+      font-weight:800;
+      cursor:pointer;
+      backdrop-filter:blur(10px);
+    }
+
+    footer{padding:38px 0 54px;border-top:1px solid rgba(89,231,255,.1);color:#718094;font-size:12px}
+
+    @media (max-width:900px){
+      .visual-strip{width:150px;opacity:.18}
+      .nav-links{display:none}
+      .hero-grid,.media-grid,.founder{grid-template-columns:1fr}
+      .hero-card{min-height:320px}
+      .grid-3{grid-template-columns:1fr}
+      .section{padding:82px 0}
+    }
+    @media (max-width:560px){
+      .entry-mark{width:min(62vw,230px)}
+      #enterBtn{width:100%;font-size:10px;padding:17px 16px;letter-spacing:.14em}
+      .visual-strip{width:90px;opacity:.12}
+      .hero{min-height:auto;padding-top:54px}
+      .hero-card{min-height:270px}
+      .hero-logo{width:82%}
+      .contact-box{padding:34px 22px}
+      .container{width:min(calc(100% - 28px),var(--max))}
+    }
+  </style>
+</head>
+<body>
+
+  <div id="entry" aria-label="A-10 C.O. Research Labs entrance">
+    <div class="entry-wrap">
+      <div class="entry-mark">
+        <img src="a10-logo.jpg" alt="A-10 C.O. Research Labs" onerror="this.parentElement.style.display='none';document.querySelector('.entry-fallback').style.display='block'">
+      </div>
+      <div class="entry-fallback">A-10 C.O.</div>
+      <button id="enterBtn" type="button">ENTER A-10 C.O. RESEARCH LABS</button>
+      <div class="entry-note">Science · Technology · Cognitive Continuity</div>
+    </div>
   </div>
-</div>
 
+  <div class="visual-strip" aria-hidden="true"></div>
 
-<script>
-  (() => {
-    const entryOverlay = document.getElementById("a10-entry-overlay");
-    const enterButton = document.getElementById("a10-enter-button");
+  <audio id="ambient" loop preload="auto">
+    <source src="assets/a10-labs-ambient.m4a" type="audio/mp4">
+  </audio>
 
-    const introOverlay = document.getElementById("a10-intro-overlay");
-    const introVideo = document.getElementById("a10-intro-video");
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="brand">
+        <strong>A-10 C.O. RESEARCH LABS™</strong>
+        <span>SCIENCE & TECHNOLOGY DIVISION</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#pillars">Pillars</a>
+        <a href="#atencia">AtencIA</a>
+        <a href="#novaverse">NovaVerse</a>
+        <a href="#founder">Founder</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    /*
-      CAMBIA SOLO ESTO si tu audio usa otro ID.
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">A-10 C.O. Enterprises LLC · Science & Technology</div>
+          <h1>Architecting the next <span class="accent">relationship</span> between humans and technology.</h1>
+          <p>A-10 C.O. Research Labs™ explores intelligent architectures, contextual systems, human–technology symbiosis, interoperability, digital continuity and emerging models of post-biological cognition.</p>
+        </div>
+        <div class="hero-card">
+          <img class="hero-logo" src="a10-logo.jpg" alt="A-10 C.O. Research Labs logo" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
 
-      Tu botón de música ya funciona, así que NO vamos a reescribir
-      esa lógica. Aquí solo intentamos arrancar el audio existente
-      después del gesto del usuario.
+    <section id="about" class="section">
+      <div class="container media-grid">
+        <div>
+          <div class="eyebrow">About the Lab</div>
+          <h2>Research beyond the interface.</h2>
+          <p>The laboratory is organized around a simple premise: advanced technology should not merely respond to users; it should understand continuity, intention, context and the evolving relationship between a person and the systems surrounding them.</p>
+          <p>Our work spans cognitive continuity, human–AI symbiosis, ambient computing, intelligent orchestration and the conceptual foundations for digital existence.</p>
+        </div>
+        <div class="banner">
+          <img src="hero-banner-a10.jpg" alt="A-10 C.O. Research Labs visual" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
 
-      IDs contemplados:
-      - ambientAudio
-      - bgMusic
-      - backgroundMusic
-      - siteMusic
-      - music
-    */
-    const existingMusic =
-      document.getElementById("ambientAudio") ||
-      document.getElementById("bgMusic") ||
-      document.getElementById("backgroundMusic") ||
-      document.getElementById("siteMusic") ||
-      document.getElementById("music");
+    <section id="pillars" class="section">
+      <div class="container">
+        <div class="eyebrow">Research Pillars</div>
+        <h2>Three directions. One continuum.</h2>
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-number">01 · COGNITIVE CONTINUITY</div>
+            <h3>Persistent intelligence</h3>
+            <p>Research into memory, identity, context and continuity across devices, interfaces and time.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">02 · HUMAN–AI SYMBIOSIS</div>
+            <h3>Homo Nexus</h3>
+            <p>Exploring how persistent digital intelligence may amplify human reasoning, planning, learning and creative capability.</p>
+          </article>
+          <article class="card">
+            <div class="card-number">03 · DIGITAL EXISTENCE</div>
+            <h3>Beyond biological substrate</h3>
+            <p>Philosophical, scientific and technological inquiry into persistent cognitive systems and post-biological personhood.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    let introFinished = false;
+    <section id="atencia" class="section">
+      <div class="container media-grid">
+        <div class="video-frame">
+          <video id="conceptVideo" autoplay muted loop playsinline preload="metadata">
+            <source src="atencia-concept-video.MP4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <div class="eyebrow">AtencIA™</div>
+          <h2>Context becomes architecture.</h2>
+          <p>AtencIA™ is conceived as an intelligent contextual layer able to preserve continuity between conversation, memory, intention, tools, devices and action.</p>
+          <p>Rather than replacing existing hardware, the system is designed to operate across it — allowing the user’s intelligent continuum to persist wherever the user goes.</p>
+          <img src="atencia-logo.PNG" alt="AtencIA logo" style="width:min(260px,70%);margin-top:26px;opacity:.95" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
 
+    <section id="novaverse" class="section">
+      <div class="container">
+        <div class="eyebrow">NovaVerse™</div>
+        <h2>Research, fiction and future systems.</h2>
+        <div class="banner" style="margin-top:28px;min-height:260px">
+          <img src="novaverse-saga-banner.PNG" alt="NovaVerse Saga" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
 
-    /* ========================================
-       ESTADO INICIAL
-       ======================================== */
+    <section id="founder" class="section">
+      <div class="container founder">
+        <div class="founder-photo">
+          <img src="william-founder.jpg" alt="Dr. William J. Atencio González" onerror="this.style.display='none'">
+        </div>
+        <div>
+          <div class="eyebrow">Founder</div>
+          <h2>Dr. William J. Atencio González</h2>
+          <p>Founder of A-10 C.O. Research Labs™ and creator of the AtencIA™ and NovaVerse™ research ecosystem. His work connects management, technology, logistics, cognition, speculative research and the design of persistent human–digital systems.</p>
+          <p>The laboratory serves as a platform for theoretical research, prototyping and interdisciplinary exploration around intelligent continuity and future human–technology relationships.</p>
+        </div>
+      </div>
+    </section>
 
-    function resetEntryState() {
-      introFinished = false;
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-box">
+          <div class="eyebrow">A-10 C.O. Research Labs™</div>
+          <h2>Building the continuum.</h2>
+          <p style="max-width:700px;margin:0 auto">Independent research and technology development within A-10 C.O. Enterprises LLC.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-      entryOverlay.classList.remove("is-hidden");
+  <button id="soundBtn" class="sound-btn" type="button" aria-pressed="false">AMBIENT · OFF</button>
 
-      introOverlay.classList.add("is-hidden");
-      introOverlay.classList.remove("is-active");
-      introOverlay.setAttribute("aria-hidden", "true");
+  <footer>
+    <div class="container">© 2026 A-10 C.O. Enterprises LLC · A-10 C.O. Research Labs™</div>
+  </footer>
 
-      try {
-        introVideo.pause();
-        introVideo.currentTime = 0;
-      } catch (error) {
-        console.warn("A-10 intro reset:", error);
+  <script>
+    (() => {
+      const entry = document.getElementById('entry');
+      const enterBtn = document.getElementById('enterBtn');
+      const ambient = document.getElementById('ambient');
+      const soundBtn = document.getElementById('soundBtn');
+      const conceptVideo = document.getElementById('conceptVideo');
+
+      // Always begin at the entrance. No session/local storage is used.
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+
+      async function startAmbient(){
+        try{
+          ambient.volume = .42;
+          await ambient.play();
+          soundBtn.textContent = 'AMBIENT · ON';
+          soundBtn.setAttribute('aria-pressed','true');
+        }catch(e){
+          soundBtn.textContent = 'AMBIENT · OFF';
+        }
       }
 
-      /*
-        Evita restauración visual del navegador
-        al volver desde historial / bfcache.
-      */
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-    }
-
-
-    /* ========================================
-       MOSTRAR INTRO
-       ======================================== */
-
-    function showIntro() {
-      entryOverlay.classList.add("is-hidden");
-
-      introOverlay.classList.remove("is-hidden");
-
-      requestAnimationFrame(() => {
-        introOverlay.classList.add("is-active");
-        introOverlay.setAttribute("aria-hidden", "false");
+      enterBtn.addEventListener('click', async () => {
+        // Use the click itself to unlock audio on Safari/Chrome.
+        await startAmbient();
+        entry.classList.add('hidden');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        if(conceptVideo){
+          conceptVideo.muted = true;
+          conceptVideo.loop = true;
+          conceptVideo.play().catch(()=>{});
+        }
+        setTimeout(()=>document.getElementById('top').scrollIntoView({block:'start'}),120);
       });
-    }
 
-
-    /* ========================================
-       ENTRAR A LA WEB
-       ======================================== */
-
-    function finishIntro() {
-      if (introFinished) return;
-
-      introFinished = true;
-
-      introOverlay.classList.remove("is-active");
-      introOverlay.setAttribute("aria-hidden", "true");
-
-      setTimeout(() => {
-        introOverlay.classList.add("is-hidden");
-
-        document.documentElement.style.overflow = "";
-        document.body.style.overflow = "";
-
-        /*
-          Arranca el audio existente.
-          NO cambia tu botón ni tu sistema mute/unmute.
-        */
-        if (existingMusic) {
-          existingMusic.volume = existingMusic.volume || 0.45;
-
-          existingMusic.play().catch(() => {
-            /*
-              Si Safari no lo deja aquí, tu botón de audio
-              seguirá funcionando como ya funciona actualmente.
-            */
-          });
+      soundBtn.addEventListener('click', async () => {
+        if(ambient.paused){
+          await startAmbient();
+        }else{
+          ambient.pause();
+          soundBtn.textContent = 'AMBIENT · OFF';
+          soundBtn.setAttribute('aria-pressed','false');
         }
+      });
 
-        /*
-          Si tienes videos en loop en la página, esta parte
-          intenta activarlos sin modificar tu HTML.
-        */
-        document
-          .querySelectorAll(
-            'video[loop], video[data-loop], .loop-video, #atenciaConceptVideo'
-          )
-          .forEach(video => {
-
-            if (video === introVideo) return;
-
-            video.loop = true;
-            video.playsInline = true;
-
-            /*
-              Los navegadores exigen muted para autoplay.
-              Si el video tiene audio propio y lo quieres escuchar,
-              elimina esta línea.
-            */
-            video.muted = true;
-
-            video.play().catch(() => {});
-          });
-
-      }, 500);
-    }
-
-
-    /* ========================================
-       CLICK ENTER
-       ======================================== */
-
-    enterButton.addEventListener("click", async () => {
-      showIntro();
-
-      /*
-        El intro va muteado.
-        Esto maximiza compatibilidad iPhone / Safari / Chrome.
-      */
-      introVideo.muted = true;
-      introVideo.playsInline = true;
-
-      try {
-        introVideo.currentTime = 0;
-
-        const playPromise = introVideo.play();
-
-        if (playPromise !== undefined) {
-          await playPromise;
+      // Browser back/forward cache: restore entrance cleanly.
+      window.addEventListener('pageshow', (ev) => {
+        if(ev.persisted){
+          entry.classList.remove('hidden');
+          ambient.pause();
+          soundBtn.textContent = 'AMBIENT · OFF';
+          soundBtn.setAttribute('aria-pressed','false');
+          document.documentElement.style.overflow = 'hidden';
+          document.body.style.overflow = 'hidden';
         }
-
-      } catch (error) {
-        console.warn(
-          "A-10 intro could not start:",
-          error
-        );
-
-        /*
-          No dejamos al usuario atrapado.
-        */
-        setTimeout(finishIntro, 900);
-      }
-    });
-
-
-    /* ========================================
-       CUANDO TERMINA EL VIDEO
-       ======================================== */
-
-    introVideo.addEventListener("ended", finishIntro);
-
-
-    /* ========================================
-       ERROR REAL DE VIDEO
-       ======================================== */
-
-    introVideo.addEventListener("error", () => {
-      console.warn(
-        "A-10 intro file could not be decoded or loaded."
-      );
-
-      setTimeout(finishIntro, 1000);
-    });
-
-
-    /*
-      Si el navegador cargó metadata pero no avanza,
-      evitamos cuadro negro eterno.
-
-      12 segundos es solo fail-safe.
-      Si tu intro dura más, aumenta este número.
-    */
-    let playbackWatchdog;
-
-    introVideo.addEventListener("playing", () => {
-      clearTimeout(playbackWatchdog);
-
-      playbackWatchdog = setTimeout(() => {
-
-        if (
-          !introFinished &&
-          (
-            introVideo.paused ||
-            introVideo.readyState < 2
-          )
-        ) {
-          finishIntro();
-        }
-
-      }, 12000);
-    });
-
-
-    /* ========================================
-       BFCACHE / BACK / REFRESH
-       ======================================== */
-
-    window.addEventListener("pageshow", event => {
-      /*
-        Si Safari o Chrome restauran la página desde cache,
-        volvemos a mostrar ENTER.
-      */
-      if (event.persisted) {
-        resetEntryState();
-      }
-    });
-
-
-    /*
-      Inicio limpio siempre.
-    */
-    resetEntryState();
-  })();
-</script>
+      });
+    })();
+  </script>
+</body>
+</html>
